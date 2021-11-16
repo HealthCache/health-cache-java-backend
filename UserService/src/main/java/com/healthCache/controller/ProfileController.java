@@ -5,6 +5,7 @@ import com.healthCache.exceptions.ResourceNotFoundException;
 import com.healthCache.model.User;
 import com.healthCache.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,24 @@ public class ProfileController {
         this.userService = userService;
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User u){
+        String username = u.getUsername();
+        String password = u.getPassword();
+        System.out.println("U is "+ u);
+        User user = this.userService.findByUsername(username);
+        if (user.getPassword().equals(password)){
+            return ResponseEntity.ok().body(user);
+        }else {
+            return new ResponseEntity<User>(u, HttpStatus.FORBIDDEN);
+        }
+    }
+
+
+    @PostMapping("/save")
+    public User saveUser(@RequestBody User user){
+        return this.userService.save(user);
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getUsers(){

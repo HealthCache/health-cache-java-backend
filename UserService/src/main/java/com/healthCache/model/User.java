@@ -3,12 +3,7 @@ package com.healthCache.model;
 import java.sql.Date;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.*;
 
@@ -30,6 +25,7 @@ public class User {
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name="gender", nullable=false)
 	private Gender gender;
 
@@ -45,6 +41,7 @@ public class User {
 	@Column(name="dob", nullable=false)
 	private LocalDate dob;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name="role", nullable=false)
 	private UserRole role;
 
@@ -62,7 +59,7 @@ public class User {
 
 	@Column(name="phone_no", nullable=false, unique=true)
 	private String phoneNo;
-
+	@Enumerated(EnumType.STRING)
 	@Column(name="relationship_status", nullable=false)
 	private RelationshipStatus relationshipStatus;
 

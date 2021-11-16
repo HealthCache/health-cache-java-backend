@@ -46,6 +46,10 @@ public class UserService {
 
 
 //	User Profile Services Starts Here
+public User save(User user) {
+	return uDao.save(user);
+
+}
 
 	public Optional<User> findById(Long id) {
 		return uDao.findById(id);
@@ -72,9 +76,9 @@ public class UserService {
 		return uDao.findByEmail(email);
 	}
 
-//	public Optional<User> findByUsernameOpt(String username) {
-//		return uDao.findByUsername(username);
-//	}
+	public User findByUsername(String username) {
+		return uDao.findByUsername(username);
+	}
 
 	public User getUser(Long id) {
 		User user = findAll().stream()
