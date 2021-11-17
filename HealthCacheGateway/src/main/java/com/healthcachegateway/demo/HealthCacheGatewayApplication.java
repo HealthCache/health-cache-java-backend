@@ -28,22 +28,22 @@ public class HealthCacheGatewayApplication {
 	    return builder.routes()
 	        .route(p -> p
 	            .path("/api/user")
-	            .uri("http://localhost:8081"))
+	            .uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:8081"))
 	        .route(p -> p
 	            .path("/api/profile")
-	            .uri("http://localhost:8081"))
+	            .uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:8081"))
 	        .route(p -> p
 	        	.path("/claim")
-	        	.uri("http://localhost:8089"))
+	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:8089"))
 	        .route(p -> p
 	        	.path("/message")
-	        	.uri("http://localhost:2727"))
+	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:2727"))
 	        .route(p -> p
 	        	.path("/subject")
-	        	.uri("http://localhost:2727"))
+	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:2727"))
 	        .route(p -> p
 	        	.path("/usernames/**")
-	        	.uri("http://localhost:2727"))
+	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:2727"))
 	        .build();
 	}
 		
