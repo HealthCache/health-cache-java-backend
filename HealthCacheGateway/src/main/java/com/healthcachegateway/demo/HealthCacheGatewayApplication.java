@@ -44,6 +44,13 @@ public class HealthCacheGatewayApplication {
 	        .route(p -> p
 	        	.path("/usernames/**")
 	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:2727"))
+	        .route(p -> p
+	        	.path("/h2-claims")
+	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:8089/h2-claims"))
+	        .route(p -> p
+	        	.path("/h2-discussion")
+	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:2727/h2-discussion"))
+	        
 	        .build();
 	}
 		
