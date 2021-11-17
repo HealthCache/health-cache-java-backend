@@ -46,6 +46,17 @@ public class ClaimServiceTest {
 		
 		assertEquals(test, c);
 	}
+	@Test
+	public void saveNewClaim() {
+		Claim c = new Claim(1, 2, "test", "test", "test");
+		
+		
+		Mockito.when(claimServ.saveNewClaim(c)).thenReturn(c);
+		Claim test = claimServ.saveNewClaim(c);
+		
+		
+		assertEquals(test, c);
+	}
 	
 	@Test
 	public void findAllClaims() {
@@ -90,4 +101,58 @@ public class ClaimServiceTest {
 	}
 	
 	
+	@Test
+	public void findClaimById() {
+		
+		Claim c = new Claim(2, 2, "test", "test", "pending");
+		Mockito.when(claimServ.findByClaimId(2)).thenReturn(c);
+		Claim b = claimServ.findByClaimId(2);
+		
+		System.out.println("claim c " + c);
+		System.out.println("claim b " + b);
+		assertEquals(c, b);
+		 
+	}
+	
+	
+	@Test
+	public void updateClaim() {
+		Claim c = new Claim(1, 2, "test", "test", "approved");
+		
+		Mockito.when(claimServ.updateClaim(c)).thenReturn(c);
+		Claim b = claimServ.updateClaim(c);
+		
+		assertEquals(c, b);
+		
+	}
+	
+	@Test
+	public void findClaimsByStatus() {
+		Claim c = new Claim(1, 2, "test", "test", "pending");
+		Claim d = new Claim(3, 4, "test2", "test2", "pending");
+		List<Claim> cList = new ArrayList<Claim>();
+		cList.add(c);
+		cList.add(d);
+		
+		Mockito.when(claimServ.findClaimsByStatus("pending")).thenReturn(cList);
+		List<Claim> testList = claimServ.findClaimsByStatus("pending");
+		
+		assertEquals(cList, testList);
+		
+		
+	}
+	
+	
+	@Test
+	public void deleteClaim() {
+		
+		
+		boolean somebool = Mockito.doNothing().when(claimServ.deleteClaim(1));
+		boolean success = claimServ.deleteClaim(1);
+		 
+		System.out.println("boolean coming back as " + success);
+		assertEquals(true, success);
+	}
+	
+	 
 }
