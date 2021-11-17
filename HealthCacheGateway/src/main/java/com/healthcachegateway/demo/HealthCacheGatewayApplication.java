@@ -46,6 +46,9 @@ public class HealthCacheGatewayApplication {
 	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:2727"))
 	        .route(p -> p
 	        	.path("/h2-claims")
+	        	.filters(f -> f.circuitBreaker(config -> config
+	                    .setName("mycmd")
+	                    .setFallbackUri("forward:/fallback")))
 	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:8089/h2-claims"))
 	        .route(p -> p
 	        	.path("/h2-discussion")
