@@ -3,6 +3,8 @@ package com.healthcache.controller;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ClaimController {
+	
+	
+	private static final Logger logger = LogManager.getLogger(ClaimController.class);
 	
 	@Autowired
 	private ClaimService cServ;
@@ -66,9 +71,11 @@ public class ClaimController {
 			claims =  cServ.findAllClaims();
 		} catch(Exception ex) 
 		{ 
+			
 			ex.printStackTrace(); 
 			responseStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			//log
+			logger.error("Error = " + ex.getMessage());
+			logger.debug(ex.getStackTrace());
 		}
 		return new ResponseEntity<List<Claim>>(claims, responseStatus);
 	}
@@ -89,7 +96,8 @@ public class ClaimController {
 		{ 
 			ex.printStackTrace(); 
 			responseStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			//log
+			logger.error("Error = " + ex.getMessage());
+			logger.debug(ex.getStackTrace());
 		}
 		return new ResponseEntity<List<Claim>>(claims, responseStatus);
 	}
@@ -110,7 +118,8 @@ public class ClaimController {
 		{ 
 			ex.printStackTrace(); 
 			responseStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			//log
+			logger.error("Error = " + ex.getMessage());
+			logger.debug(ex.getStackTrace());
 		}
 		return new ResponseEntity<List<Claim>>(claims, responseStatus);
 	}
@@ -135,7 +144,8 @@ public class ClaimController {
 		{ 
 			ex.printStackTrace(); 
 			responseStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			//log
+			logger.error("Error = " + ex.getMessage());
+			logger.debug(ex.getStackTrace());
 		}
 		return new ResponseEntity<Claim>(claim, responseStatus);
 	}
@@ -159,7 +169,8 @@ public class ClaimController {
 			ex.printStackTrace();
 			result = "Claim Not Updated. Error: " + ex.getMessage();
 			resultStatus = HttpStatus.CONFLICT;
-			//log result
+			logger.error("Error = " + ex.getMessage());
+			logger.debug(ex.getStackTrace());
 		}
 
 		return new ResponseEntity<String>(result, resultStatus);
@@ -187,7 +198,8 @@ public class ClaimController {
 			ex.printStackTrace();
 			result = "Claim Not Saved. Error: " + ex.getMessage();
 			resultStatus = HttpStatus.CONFLICT;
-			//log result
+			logger.error("Error = " + ex.getMessage());
+			logger.debug(ex.getStackTrace());
 		}
 
 		return new ResponseEntity<String>(result, resultStatus);
@@ -214,7 +226,8 @@ public class ClaimController {
 			ex.printStackTrace(); 
 			result = "There was a problem deleting. ID: " + id + " - " + ex.getMessage();
 			responseStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			//log
+			logger.error("Error = " + ex.getMessage());
+			logger.debug(ex.getStackTrace());
 		}
 		return new ResponseEntity<String>(result, responseStatus);
 	}
