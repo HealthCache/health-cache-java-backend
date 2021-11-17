@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 
 
 @RestController
-@RequestMapping("api/claim")
+@RequestMapping("claim")
 @NoArgsConstructor
 @AllArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
