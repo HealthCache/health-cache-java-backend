@@ -178,7 +178,10 @@ public class ClaimController {
 		{
 			Claim c = new Claim(0, Integer.valueOf(claim.get("userId")), claim.get("claimType"), 
 					claim.get("description"), Util.PENDING);
-			if(cServ.saveNewClaim(c) == null) { throw new Exception("conflict saving");}
+			
+			System.out.println(c);
+			
+			if(cServ.saveNewClaim(c) == null) { throw new Exception("returning null");}
 		} catch(Exception ex) 
 		{
 			ex.printStackTrace();
