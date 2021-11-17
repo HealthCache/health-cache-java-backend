@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                dir("FileClaimService"){
+                    sh "ls"
+                    sh "mvn clean install"
+                    sh "mvn spring-boot:run"
+                }
+            }
+        }
+    }
+}

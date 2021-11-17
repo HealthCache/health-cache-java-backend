@@ -162,3 +162,12 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/git,java,maven,eclipse,windows
+
+
+# TernJS port file
+.tern-port
+/.metadata/
+
+#Mac Stuff
+.DS_Store
+

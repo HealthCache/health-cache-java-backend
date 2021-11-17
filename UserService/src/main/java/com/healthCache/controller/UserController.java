@@ -3,16 +3,16 @@ package com.healthCache.controller;
 import java.util.LinkedHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import com.healthCache.model.User;
@@ -25,17 +25,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @CrossOrigin(origins = "*")
+@RequestMapping("api/user")
 public class UserController {
 
 	@Autowired
 	private UserService uServ;
 
-	@Bean
-	@LoadBalanced
-	private RestTemplate RestTemplet() {
-
-		return new RestTemplate();
-	}
+//	@Bean
+//	@LoadBalanced
+//	private RestTemplate RestTemplet() {
+//
+//		return new RestTemplate();
+//	}
 
 	//@Autowired
 	//private RestTemplate rest;
