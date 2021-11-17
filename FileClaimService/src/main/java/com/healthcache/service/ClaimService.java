@@ -62,12 +62,12 @@ public class ClaimService {
 	public Claim findByClaimId(int id) {
 		Claim claim = null;
 		try {
-			cDao.findById(id);
+		claim = cDao.findById(id);
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return claim;
 	}
 	
-	
+	 
 	/**
 	 * @param claim
 	 * @return true if update was successful or false otherwise
@@ -103,6 +103,7 @@ public class ClaimService {
 		try {
 			cDao.deleteById(id);
 		} catch(Exception ex) { 
+			System.out.println("Deleting claim didn't work");
 			ex.printStackTrace();
 			success = false;
 		}
