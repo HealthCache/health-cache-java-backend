@@ -88,7 +88,7 @@ public class ClaimService {
 	public Claim saveNewClaim(Claim claim) {
 		Claim c = null;
 		try {
-			claim = cDao.save(claim);
+			c = cDao.save(claim);
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return c;
 	}
