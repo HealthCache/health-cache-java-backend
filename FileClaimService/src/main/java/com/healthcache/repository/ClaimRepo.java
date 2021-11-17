@@ -2,22 +2,26 @@ package com.healthcache.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import com.healthcache.models.Claim;
 
-public interface ClaimRepo {
+@Repository
+public interface ClaimRepo extends JpaRepository<Claim, Integer> {
 	
 	public List<Claim> findAll();
 	
-	public List<Claim> findAllByUserId(int user_id);
+	public List<Claim> findByUserId(int userId);
 	
-	public List<Claim> getClaimByStatus(String status);
+	public List<Claim> findByStatus(String status);
 	
-	public Claim findByClaimId();
+	public Claim findById(int id);
 	
-	public boolean updateClaim();
+	//public boolean updateClaim(Claim claim);
 	
-	public boolean createClaim();
+	//public boolean saveClaim(Claim claim);
 	
-	public boolean deleteClaim();
+	//public boolean deleteClaim(int claimId);
 
 }
