@@ -153,7 +153,7 @@ public class ClaimController {
 		{
 			Claim c = new Claim(Integer.valueOf(claim.get("id")), Integer.valueOf(claim.get("userId")), 
 					claim.get("claimType"), claim.get("description"), claim.get("status"));
-			if(!cServ.updateClaim(c)) { throw new Exception("conflict updating");}
+			if(cServ.updateClaim(c) == null) { throw new Exception("conflict updating");}
 		} catch(Exception ex) 
 		{
 			ex.printStackTrace();
@@ -178,7 +178,7 @@ public class ClaimController {
 		{
 			Claim c = new Claim(0, Integer.valueOf(claim.get("userId")), claim.get("claimType"), 
 					claim.get("description"), Util.PENDING);
-			if(!cServ.saveNewClaim(c)) { throw new Exception("conflict saving");}
+			if(cServ.saveNewClaim(c) == null) { throw new Exception("conflict saving");}
 		} catch(Exception ex) 
 		{
 			ex.printStackTrace();

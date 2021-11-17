@@ -59,10 +59,10 @@ public class ClaimService {
 	/**
 	 * @return null or claim found by claim id
 	 */
-	public Claim findByClaimId(int claimId) {
+	public Claim findByClaimId(int id) {
 		Claim claim = null;
 		try {
-			cDao.findByClaimId(claimId);
+			cDao.findById(id);
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return claim;
 	}
@@ -72,25 +72,25 @@ public class ClaimService {
 	 * @param claim
 	 * @return true if update was successful or false otherwise
 	 */
-	public boolean updateClaim(Claim claim) {
-		boolean success = false;
+	public Claim updateClaim(Claim claim) {
+		Claim c = null;
 		try {
-			success = updateClaim(claim);
+			c = cDao.save(claim);
 		} catch(Exception ex) { ex.printStackTrace(); }
-		return success;
+		return c;
 	}
 	
 	
 	/**
 	 * @param claim
-	 * @return true if new claim was successfully saved or false otherwise
+	 * @return claim on success
 	 */
-	public boolean saveNewClaim(Claim claim) {
-		boolean success = false;
+	public Claim saveNewClaim(Claim claim) {
+		Claim c = null;
 		try {
-			success = cDao.saveClaim(claim);
+			claim = cDao.save(claim);
 		} catch(Exception ex) { ex.printStackTrace(); }
-		return success;
+		return c;
 	}
 	
 	
@@ -98,11 +98,14 @@ public class ClaimService {
 	 * @param claimId
 	 * @return true if claim deleted successfully or false otherwise
 	 */
-	public boolean deleteClaim(int claimId) {
-		boolean success = false;
+	public boolean deleteClaim(int id) {
+		boolean success = true;
 		try {
-			success = cDao.deleteClaim(claimId);
-		} catch(Exception ex) { ex.printStackTrace(); }
+			cDao.deleteById(id);
+		} catch(Exception ex) { 
+			ex.printStackTrace();
+			success = false;
+		}
 		return success;
 	}
 
