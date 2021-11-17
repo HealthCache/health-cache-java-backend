@@ -1,10 +1,6 @@
-# health-cache-java-backend
+# HealthCache
 The backend repository for the health cache project
 
-PROJECT NAME
-Project Description
-
-Here goes your awesome project description!
 Technologies Used
 
     Tech 1 - version 1.0
