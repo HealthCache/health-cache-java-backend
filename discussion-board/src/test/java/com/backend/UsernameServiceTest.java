@@ -1,6 +1,7 @@
 package com.backend;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -37,5 +38,29 @@ public class UsernameServiceTest {
 		
 		assertThat(response.size()).isGreaterThan(0);
 		
+	}
+	
+	@Test
+	void getUsernameByIdTest() {
+		Username username = new Username();
+		
+		when(uDao.getById(username.getUsernameId())).thenReturn(username);
+		
+		
+		assertThat(uServ.getUsernameById(anyInt())).isEqualTo(username);
+	}
+	
+	@Test
+	void createUsernameTest() {
+		Username username = new Username();
+		when(uDao.save(username)).thenReturn(username);
+		assertThat(uServ.createUsername(username)).isEqualTo(username);
+	}
+	
+	@Test
+	void updateUsernameTest() {
+		Username username = new Username();
+		when(uDao.save(username)).thenReturn(username);
+		assertThat(uServ.updateUsername(username)).isEqualTo(username);
 	}
 }
