@@ -36,11 +36,9 @@ public class SubjectService {
 	
 	public boolean deleteSubject(Subject subject) {
 		boolean flag = false;
-		try {
+		if(sr.findById(subject.getId()).isPresent()) {
 			sr.delete(subject);
 			flag = true;
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return flag;
 	}
