@@ -15,7 +15,7 @@ public class MessageService {
 	private MessageRepo mr;
 	
 	public MessageService(MessageRepo mr) {
-		this.mr = mr;
+		this.mr = mr; 
 	}
 	
 	public Message getMessageById(int id) {
@@ -27,14 +27,14 @@ public class MessageService {
 	}
 	
 	public List<Message> getMessagesByUser(Username u) {
-		return mr.findByUserId(u.getUsernameId());
+		return mr.findByUsernameId(u.getId());
 	}
 	
 	public List<Message> getMessagesBySubject(Subject s) {
-		return mr.findBySubjectId(s.getSubjectId());
+		return mr.findBySubjectId(s.getId());
 	}
 	
-	public Message createMessage(Message message) {
+	public Message createMessage(Message message) { 
 		return mr.save(message);
 	}
 	
@@ -51,7 +51,7 @@ public class MessageService {
 	
 	public Message updateMessage(Message message) {
 		Message m = null;
-		if(mr.findById(message.getMessageId()).isPresent()) {
+		if(mr.findById(message.getId()).isPresent()) {
 			m = mr.save(message);
 		}
 		return m;

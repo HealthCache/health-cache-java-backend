@@ -29,7 +29,7 @@ public class Message {
 	@Id
 	@Column(name="message_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int messageId;
+	private int id;
 
 
 	@ManyToOne(cascade=CascadeType.MERGE)

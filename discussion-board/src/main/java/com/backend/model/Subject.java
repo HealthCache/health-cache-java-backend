@@ -33,7 +33,7 @@ public class Subject {
 	@Id
 	@Column(name="subject_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int subjectId;
+	private int id;
 	
 	@Column(name="content")
 	private String content;

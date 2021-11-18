@@ -61,7 +61,7 @@ public class MessageController {
 	
 	@PostMapping("/update")
 	public ResponseEntity<Message> updateSubject(@RequestBody Message message) {
-		Message s = ms.getMessageById(message.getMessageId());
+		Message s = ms.getMessageById(message.getId());
 		return new ResponseEntity<Message>(s, HttpStatus.ACCEPTED);
 	}
 }

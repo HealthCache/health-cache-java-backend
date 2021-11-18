@@ -53,7 +53,7 @@ public class SubjectController {
 	
 	@PostMapping("/update")
 	public ResponseEntity<Subject> updateSubject(@RequestBody Subject subject) {
-		Subject s = ss.getSubjectById(subject.getSubjectId());
+		Subject s = ss.getSubjectById(subject.getId());
 		return new ResponseEntity<Subject>(s, HttpStatus.ACCEPTED);
 	}
 }

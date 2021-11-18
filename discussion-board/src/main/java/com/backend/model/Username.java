@@ -30,7 +30,7 @@ public class Username {
 	@Id
 	@Column(name="username_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int usernameId;
+	private int id;
 	
 	@Column(name="username")
 	private String username;
