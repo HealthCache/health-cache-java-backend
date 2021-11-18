@@ -27,7 +27,7 @@ public class SubjectService {
 	
 	public List<Subject> getSubjectsByUser(Username username) {
 		
-		return sr.findByUserId(username.getUsernameId());
+		return sr.findByUsernameId(username.getId());
 	}
 	
 	public Subject createSubject(Subject subject) {
@@ -47,7 +47,7 @@ public class SubjectService {
 	
 	public Subject updateSubject(Subject subject) {
 		Subject s = null;
-		if(sr.findById(subject.getSubjectId()).isPresent()) {
+		if(sr.findById(subject.getId()).isPresent()) {
 			s = sr.save(subject);
 		}
 		return s;

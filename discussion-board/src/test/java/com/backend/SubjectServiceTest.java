@@ -2,7 +2,6 @@ package com.backend;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -47,7 +46,7 @@ public class SubjectServiceTest {
 	@Test
 	void getSubjectByIdTest() {
 		Subject subject = new Subject();
-		when(sDao.getById(subject.getSubjectId())).thenReturn(subject);
+		when(sDao.getById(subject.getId())).thenReturn(subject);
 		assertThat(sServ.getSubjectById(anyInt())).isEqualTo(subject);
 	}
 	
@@ -55,7 +54,7 @@ public class SubjectServiceTest {
 	void getSubjectsByUser() {
 		Username username = new Username();
 		List<Subject> list = new ArrayList<>();
-		when(sDao.findByUserId(username.getUsernameId())).thenReturn(list);
+		when(sDao.findByUsernameId(username.getId())).thenReturn(list);
 		assertThat(sServ.getSubjectsByUser(username)).isEqualTo(list);
 	}
 	

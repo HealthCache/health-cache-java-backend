@@ -44,7 +44,7 @@ public class UsernameServiceTest {
 	void getUsernameByIdTest() {
 		Username username = new Username();
 		
-		when(uDao.getById(username.getUsernameId())).thenReturn(username);
+		when(uDao.getById(username.getId())).thenReturn(username);
 		
 		
 		assertThat(uServ.getUsernameById(anyInt())).isEqualTo(username);

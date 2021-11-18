@@ -30,7 +30,7 @@ public class UsernamesService {
 	
 	public Username updateUsername(Username username) {
 		Username u = null;
-		if(ur.findById(username.getUsernameId()).isPresent() == false) {
+		if(ur.findById(username.getId()).isPresent() == false) {
 			u = ur.save(username);
 		}
 		return u;
