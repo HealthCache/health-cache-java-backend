@@ -21,10 +21,12 @@ public class UserService {
 	
 	public boolean registerUser(User u)
 	{
+		//System.out.println(u);
 		try {
 			uDao.save(u);
 			return true;
 		} catch (Exception e) {
+			System.out.println(u);
 			return false;
 		}
 	}

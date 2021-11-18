@@ -1,6 +1,5 @@
 package com.healthCache.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -17,7 +16,7 @@ import lombok.*;
 public class User {
 	@Id()
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long user_id;
+	private int user_id;
 
 	@Column(name="first_name", nullable=false)
 	private String firstName;
@@ -52,13 +51,14 @@ public class User {
 	private String addressLineTwo;
 
 	@Column(name="zipcode", nullable=false)
-	private int zipcode;
+	private String zipcode;
 
 	@Column(name="city", nullable=false)
 	private String city;
 
 	@Column(name="phone_no", nullable=false, unique=true)
 	private String phoneNo;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name="relationship_status", nullable=false)
 	private RelationshipStatus relationshipStatus;
