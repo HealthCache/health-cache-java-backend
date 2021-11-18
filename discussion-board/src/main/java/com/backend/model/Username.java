@@ -14,14 +14,23 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
 @Table(name="usernames")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString
 public class Username {
 	
 	@Id
 	@Column(name="username_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int username_id;
+	private int usernameId;
 	
 	@Column(name="username")
 	private String username;
@@ -33,22 +42,5 @@ public class Username {
 	@OneToMany(mappedBy="username", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Message> messages = new ArrayList<>();
-
-	public int getUsername_id() {
-		return username_id;
-	}
-
-	public void setUsername_id(int username_id) {
-		this.username_id = username_id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
 	
 }

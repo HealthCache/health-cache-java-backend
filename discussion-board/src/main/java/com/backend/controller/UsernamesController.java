@@ -1,6 +1,5 @@
 package com.backend.controller;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +23,26 @@ public class UsernamesController {
 	@Autowired
 	private UsernamesService us;
 	
+	@GetMapping("/getbyid")
+	public ResponseEntity<Username> getById(int id) {
+		Username u = us.getUsernameById(id);
+		return new ResponseEntity<Username>(u, HttpStatus.OK);
+	}
+	
 	@GetMapping("/getall")
 	public ResponseEntity<List<Username>> getAll() {
 		return new ResponseEntity<List<Username>>(us.getAllUsernames(), HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<Username> createUsernames(@RequestBody LinkedHashMap<String, Object> usernames) {
-		Username u = new Username();
+	public ResponseEntity<Username> create(@RequestBody Username username) {
+		Username u = us.createUsername(username);
+		return new ResponseEntity<Username>(u, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/update")
+	public ResponseEntity<Username> update(@RequestBody Username username) {
+		Username u = us.updateUsername(username);
 		return new ResponseEntity<Username>(u, HttpStatus.CREATED);
 	}
 }

@@ -16,7 +16,23 @@ public class UsernamesService {
 		this.ur = ur;
 	}
 	
+	public Username getUsernameById(int id) {
+		return ur.getById(id);
+	}
+	
 	public List<Username> getAllUsernames() {
 		return ur.findAll();
+	}
+	
+	public Username createUsername(Username username) {
+		return ur.save(username);
+	}
+	
+	public Username updateUsername(Username username) {
+		Username u = null;
+		if(ur.findById(username.getUsernameId()).isPresent() == false) {
+			u = ur.save(username);
+		}
+		return u;
 	}
 }
