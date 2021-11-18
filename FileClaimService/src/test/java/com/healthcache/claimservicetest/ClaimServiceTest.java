@@ -147,7 +147,7 @@ public class ClaimServiceTest {
 	public void deleteClaim() {
 		
 		
-		boolean somebool = Mockito.doNothing().when(claimServ.deleteClaim(1));
+		Mockito.doNothing().when(claimRep).deleteById(1);
 		boolean success = claimServ.deleteClaim(1);
 		 
 		System.out.println("boolean coming back as " + success);
