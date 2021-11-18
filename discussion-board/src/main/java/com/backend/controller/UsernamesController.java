@@ -21,6 +21,12 @@ public class UsernamesController {
 	@Autowired
 	private UsernamesService us;
 	
+	@GetMapping("/getone")
+	public ResponseEntity<Username> getOne() {
+		Username u = new Username();
+		return new ResponseEntity<Username>(u, HttpStatus.OK);
+	}
+	
 	@GetMapping("/getbyid")
 	public ResponseEntity<Username> getById(int id) {
 		Username u = us.getUsernameById(id);
@@ -41,6 +47,17 @@ public class UsernamesController {
 	@PostMapping("/update")
 	public ResponseEntity<Username> update(@RequestBody Username username) {
 		Username u = us.updateUsername(username);
+		if(u == null) {
+			return new ResponseEntity<Username>(new Username(), HttpStatus.NOT_FOUND);
+		}
 		return new ResponseEntity<Username>(u, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/delete")
+	public ResponseEntity<String> delete(@RequestBody Username username) {
+		if(!us.deleteUsername(username)) {
+			return new ResponseEntity<String>("Username could not be  deleted", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String>("Username deleted", HttpStatus.CREATED);
 	}
 }

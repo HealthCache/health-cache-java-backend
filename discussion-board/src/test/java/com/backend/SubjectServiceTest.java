@@ -1,13 +1,14 @@
 package com.backend;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,37 +47,49 @@ public class SubjectServiceTest {
 	@Test
 	void getSubjectByIdTest() {
 		Subject subject = new Subject();
-		when(sDao.getById(subject.getId())).thenReturn(subject);
-		assertThat(sServ.getSubjectById(anyInt())).isEqualTo(subject);
+		when(sDao.getById(1)).thenReturn(subject);
+		assertThat(sServ.getSubjectById(1)).isEqualTo(subject);
 	}
-	
-	@Test
-	void getSubjectsByUser() {
-		Username username = new Username();
-		List<Subject> list = new ArrayList<>();
-		when(sDao.findByUsernameId(username.getId())).thenReturn(list);
-		assertThat(sServ.getSubjectsByUser(username)).isEqualTo(list);
-	}
+
 	
 	@Test
 	void createSubject() {
 		Subject subject = new Subject();
-		when(sDao.save(subject)).thenReturn(subject);
+		when(sDao.save(any())).thenReturn(subject);
 		assertThat(sServ.createSubject(subject)).isEqualTo(subject);
 	}
 	
 	@Test
 	void deleteSubjectTest() {
 		Subject subject = new Subject();
-		doNothing().when(sDao).delete(subject);
+		Optional<Subject> op = Optional.of(subject);
+//		doNothing().when(sDao).delete(any());
+		when(sDao.findById(anyInt())).thenReturn(op);
 		assertThat(sServ.deleteSubject(subject)).isEqualTo(true);
 	}
 	
 	@Test
 	void updateSubjectTest() {
 		Subject subject = new Subject();
+		doReturn(Optional.of(subject)).when(sDao).findById(subject.getId());
 		when(sDao.save(subject)).thenReturn(subject);
 		assertThat(sServ.updateSubject(subject)).isEqualTo(subject);
+	}
+	
+	
+	@Test
+	void getSubjectsByUser() {
+		ArrayList<Subject> subjects = new ArrayList<Subject>();
+		Subject subject = new Subject();
+		Username username = new Username();
+		
+		subjects.add(subject);
+		
+		when(sDao.findByUsernameId(anyInt())).thenReturn(subjects);
+		
+		ArrayList<Subject> response = (ArrayList<Subject>) sServ.getSubjectsByUser(username);
+		
+		assertThat(response.size()).isGreaterThan(0);
 	}
 	
 }

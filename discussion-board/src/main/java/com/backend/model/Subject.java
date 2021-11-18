@@ -42,7 +42,7 @@ public class Subject {
 	private Date timestamp;
 	
 	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="username_id")
 	private Username username;
 	
 	@ManyToMany(cascade=CascadeType.ALL)

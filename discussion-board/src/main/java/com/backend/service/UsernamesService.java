@@ -30,9 +30,18 @@ public class UsernamesService {
 	
 	public Username updateUsername(Username username) {
 		Username u = null;
-		if(ur.findById(username.getId()).isPresent() == false) {
+		if(ur.findById(username.getId()).isPresent()) {
 			u = ur.save(username);
 		}
 		return u;
+	}
+	
+	public boolean deleteUsername(Username username) {
+		boolean flag = false;		
+		if(ur.findById(username.getId()).isPresent()) {
+			ur.delete(username);
+			flag = true;
+		}
+		return flag;
 	}
 }

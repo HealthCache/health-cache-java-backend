@@ -23,7 +23,7 @@ public class MessageService {
 	}
 	
 	public List<Message> getAllMessages() {
-		return mr.findAll();
+		return mr.findAll(); 
 	}
 	
 	public List<Message> getMessagesByUser(Username u) {
@@ -40,11 +40,9 @@ public class MessageService {
 	
 	public boolean deleteMessage(Message message) {
 		boolean flag = false;
-		try {
+		if(mr.findById(message.getId()).isPresent()) {
 			mr.delete(message);
 			flag = true;
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return flag;
 	}

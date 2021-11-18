@@ -2,10 +2,12 @@ package com.backend;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -59,7 +61,8 @@ public class UsernameServiceTest {
 	
 	@Test
 	void updateUsernameTest() {
-		Username username = new Username();
+		Username username = new Username();		
+		doReturn(Optional.of(username)).when(uDao).findById(username.getId());
 		when(uDao.save(username)).thenReturn(username);
 		assertThat(uServ.updateUsername(username)).isEqualTo(username);
 	}
