@@ -17,11 +17,5 @@ public interface ClaimRepo extends JpaRepository<Claim, Integer> {
 	public List<Claim> findByStatus(String status);
 	
 	public Claim findById(int id);
-	
-	//public boolean updateClaim(Claim claim);
-	
-	//public boolean saveClaim(Claim claim);
-	
-	//public boolean deleteClaim(int claimId);
 
 }
