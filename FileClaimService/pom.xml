@@ -97,17 +97,7 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-		
-	<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.9.1</version>
-        <configuration>
-          <port>8089</port>
-        </configuration>
-      </plugin>
-		
+		<plugins>		
 		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
