@@ -50,7 +50,7 @@ public class ClaimController {
 	
 	
 	/**
-	 * @return the claim types defined in the Claim POJO as static finals
+	 * @return the claim types defined in the Claim POJO as a list of strings
 	 */
 	@GetMapping("/claimtypes")
 	public ResponseEntity<List<String>> getClaimTypes()
@@ -60,7 +60,7 @@ public class ClaimController {
 	
 
 	/**
-	 * @return all claims
+	 * @return all claims or null
 	 */
 	@GetMapping("/all")
 	public ResponseEntity<List<Claim>> getAllClaims(){
