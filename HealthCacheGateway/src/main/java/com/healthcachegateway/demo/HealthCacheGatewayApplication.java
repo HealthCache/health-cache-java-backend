@@ -33,7 +33,7 @@ public class HealthCacheGatewayApplication {
 	            .path("/api/profile")
 	            .uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:8081"))
 	        .route(p -> p
-	        	.path("/claim")
+	        	.path("/claim/**")
 	        	.uri("http://ec2-34-227-74-122.compute-1.amazonaws.com:8089"))
 	        .route(p -> p
 	        	.path("/message")
