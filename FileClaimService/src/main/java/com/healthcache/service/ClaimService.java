@@ -92,7 +92,7 @@ public class ClaimService {
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return c;
 	}
-	
+	 
 	
 	/**
 	 * @param claimId
@@ -106,7 +106,7 @@ public class ClaimService {
 			System.out.println("Deleting claim didn't work");
 			ex.printStackTrace();
 			success = false;
-		}
+		} 
 		return success;
 	}
 

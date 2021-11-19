@@ -2,6 +2,7 @@ package com.healthcache.claimservicetest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,6 +153,17 @@ public class ClaimServiceTest {
 		 
 		System.out.println("boolean coming back as " + success);
 		assertEquals(true, success);
+	}
+	
+	@Test
+	public void newClaimException() {
+		try {
+			Claim c = new Claim(1, 2, "test", "test", "approved");
+			Mockito.when(claimServ.saveNewClaim(c)).thenThrow(Exception.class);
+			
+		}catch(Exception e) {
+			assertTrue(e instanceof Exception);
+		}
 	}
 	
 	 
