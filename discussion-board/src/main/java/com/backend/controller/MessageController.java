@@ -19,10 +19,16 @@ import com.backend.service.MessageService;
 
 @RestController
 @RequestMapping("/message")
-public class MessageController {
+public class MessageController { 
 
 	@Autowired
 	private MessageService ms;
+	
+	@GetMapping("/getone")
+	public ResponseEntity<Message> getOne() {
+		Message m = new Message();
+		return new ResponseEntity<Message>(m, HttpStatus.OK);
+	}
 	
 	@GetMapping("/getbyid")
 	public ResponseEntity<Message> getById(@RequestParam int id) {
@@ -30,21 +36,27 @@ public class MessageController {
 		return new ResponseEntity<Message>(m, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getbyuser")
+	@GetMapping("/getall")
+	public ResponseEntity<List<Message>> getAll() {
+		List<Message> list = ms.getAllMessages();
+		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getlatestten")
+	public ResponseEntity<List<Message>> getLatestTen() {
+		List<Message> list = ms.getLatestTenById();
+		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping("/getbyuser")
 	public ResponseEntity<List<Message>> getByUser(@RequestBody Username u) {
 		List<Message> list = ms.getMessagesByUser(u);
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getbysubject")
+	@PostMapping("/getbysubject")
 	public ResponseEntity<List<Message>> getBySubject(@RequestBody Subject s) {
 		List<Message> list = ms.getMessagesBySubject(s);
-		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
-	}
-	
-	@GetMapping("/getall")
-	public ResponseEntity<List<Message>> getAll() {
-		List<Message> list = ms.getAllMessages();
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
 	

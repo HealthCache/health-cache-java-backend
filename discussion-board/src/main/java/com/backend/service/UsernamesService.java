@@ -24,6 +24,10 @@ public class UsernamesService {
 		return ur.findAll();
 	}
 	
+	public List<Username> getFirst10() {
+		return ur.findLast10ByOrderByIdDesc();
+	}
+	
 	public Username createUsername(Username username) {
 		return ur.save(username);
 	}
@@ -33,11 +37,11 @@ public class UsernamesService {
 		if(ur.findById(username.getId()).isPresent()) {
 			u = ur.save(username);
 		}
-		return u;
+		return u; 
 	}
 	
 	public boolean deleteUsername(Username username) {
-		boolean flag = false;		
+		boolean flag = false;		 
 		if(ur.findById(username.getId()).isPresent()) {
 			ur.delete(username);
 			flag = true;

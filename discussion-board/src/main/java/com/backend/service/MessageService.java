@@ -34,6 +34,10 @@ public class MessageService {
 		return mr.findBySubjectId(s.getId());
 	}
 	
+	public List<Message> getLatestTenById() {
+		return mr.findLast10ByOrderById();
+	}
+	
 	public Message createMessage(Message message) { 
 		return mr.save(message);
 	}

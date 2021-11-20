@@ -21,21 +21,33 @@ public class SubjectController {
 	
 	private SubjectService ss;
 	
+	@GetMapping("/getone")
+	public ResponseEntity<Subject> getOne() {
+		Subject s = new Subject();
+		return new ResponseEntity<Subject>(s, HttpStatus.OK);
+	}
+	
 	@GetMapping("/getbyid")
 	public ResponseEntity<Subject> getOne(@RequestParam int id) {
 		Subject s = ss.getSubjectById(id);
 		return new ResponseEntity<Subject>(s, HttpStatus.OK);		
 	}
 	
-	@GetMapping("/getbyuser")
-	public ResponseEntity<List<Subject>> getByUser(@RequestBody Username u) {
-		List<Subject> list = ss.getSubjectsByUser(u);
-		return new ResponseEntity<List<Subject>>(list, HttpStatus.OK);
-	}
-	
 	@GetMapping("/getall")
 	public ResponseEntity<List<Subject>> getAll() {
 		List<Subject> list = ss.getAllSubjects();
+		return new ResponseEntity<List<Subject>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getlatestten")
+	public ResponseEntity<List<Subject>> getLatestTen() {
+		List<Subject> list = ss.getLastTenById();
+		return new ResponseEntity<List<Subject>>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping("/getbyuser")
+	public ResponseEntity<List<Subject>> getByUser(@RequestBody Username u) {
+		List<Subject> list = ss.getSubjectsByUser(u);
 		return new ResponseEntity<List<Subject>>(list, HttpStatus.OK);
 	}
 	

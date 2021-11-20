@@ -1,0 +1,155 @@
+*********************************************
+		DiscussionBoardService API
+*********************************************
+
+**********[ MESSAGE CONTROLLER ]*************
+
+******** GET ALL MESSAGES ********
+GET http://baseURL/message/getall
+	-return all messages
+
+******** GET MESSAGE BY ID ********
+GET http://baseURL/message/getbyid
+	-return one message by id
+
+******** GET LATEST 10 MESSAGES ********
+GET http://baseURL/message/getlatestten
+	-return the latest ten messages
+
+******** GET MESSAGES BY USERNAME ********
+GET http://baseURL/message/byuser
+	-return messages from a single user
+
+******** GET MESSAGES BY SUBJECT ********
+GET http://baseURL/message/bysubject
+	-return messages from a single subject
+
+******** POST CREATE MESSAGE ********
+POST http://baseURL/message/create
+	Request Body Example:
+						{
+						  "id": 0,
+						  "subject": {
+									  "id": 0,
+									  "content": null,
+									  "timestamp": null,
+									  "username": null,
+									  "votes": []
+									},
+						  "username": {
+									  "id": 0,
+									  "username": null
+									},
+						  "content": null,
+						  "timestamp": null
+						}
+
+******** POST UPDATE MESSAGE ********
+POST http://baseURL/message/update
+	Request Body Example:
+						{
+						  "id": 0,
+						  "subject": {
+									  "id": 0,
+									  "content": null,
+									  "timestamp": null,
+									  "username": null,
+									  "votes": []
+									},
+						  "username": {
+									  "id": 0,
+									  "username": null
+									},
+						  "content": null,
+						  "timestamp": null
+						}
+******** POST DELETE MESSAGE ********
+POST http://baseURL/message/delete
+	-return string 
+
+
+**********[ SUBJECT CONTROLLER ]*************
+
+******** GET ALL SUBJECTS ********
+GET http://baseURL/subject/getall
+	-return all subjects
+
+******** GET SUBJECT BY ID ********
+GET http://baseURL/subject/getbyid
+	-return one subject by id
+
+******** GET LATEST 10 SUBJECTS ********
+GET http://baseURL/subject/getlatestten
+	-return the latest ten subjects
+
+******** GET SUBJECTS BY USERNAME ********
+GET http://baseURL/subject/byuser
+	-return messages from a single subject
+
+******** GET CREATE SUBJECT ********
+POST http://baseURL/subject/create
+	Request Body Example:
+						{
+						  "id": 0,
+						  "content": null,
+						  "timestamp": null,
+						  "username": {
+									  "id": 0,
+									  "username": null
+									},
+						  "votes": []
+						}
+
+******** GET UPDATE SUBJECT ********
+POST http://baseURL/subject/update
+	Request Body Example:
+						{
+						  "id": 0,
+						  "content": null,
+						  "timestamp": null,
+						  "username": {
+									  "id": 0,
+									  "username": null
+									},
+						  "votes": []
+						}
+
+******** GET DELETE SUBJECT ********
+POST http://baseURL/subject/delete
+	-return a string
+
+
+**********[ USERNAME CONTROLLER ]*************
+
+******** GET ALL USERNAMES ********
+GET http://baseURL/username/getall
+	-return all usernames
+
+******** GET SUBJECT BY ID ********
+GET http://baseURL/username/getbyid
+	-return one username by id
+
+******** GET LATEST 10 USERNAMES ********
+GET http://baseURL/username/get10
+	-return latest ten username
+
+******** GET CREATE USERNAME ********
+POST http://baseURL/username/create
+	Request Body Example:
+						{
+						  "id": 0,
+						  "username": null
+						}
+
+******** GET UPDATE USERNAME ********
+POST http://baseURL/username/update
+	Request Body Example:
+						{
+						  "id": 0,
+						  "username": null
+						}
+
+
+******** GET DELETE USERNAME ********
+POST http://baseURL/username/delete
+	return a string
