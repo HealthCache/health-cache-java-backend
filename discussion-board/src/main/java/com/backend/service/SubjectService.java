@@ -21,6 +21,10 @@ public class SubjectService {
 		return sr.getById(id);
 	}
 	
+	public List<Subject> getLastTenById() {
+		return sr.findLast10ByOrderByIdDesc();
+	}
+	
 	public List<Subject> getAllSubjects() {
 		return sr.findAll();
 	}

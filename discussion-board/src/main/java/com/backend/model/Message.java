@@ -31,7 +31,6 @@ public class Message {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="subject_id")
 	private Subject subject;
