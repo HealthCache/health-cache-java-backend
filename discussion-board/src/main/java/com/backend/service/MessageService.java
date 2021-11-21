@@ -19,7 +19,7 @@ public class MessageService {
 	}
 	
 	public Message getMessageById(int id) {
-		return mr.getById(id);
+		return mr.findById(id);
 	}
 	
 	public List<Message> getAllMessages() {
@@ -44,7 +44,7 @@ public class MessageService {
 	
 	public boolean deleteMessage(Message message) {
 		boolean flag = false;
-		if(mr.findById(message.getId()).isPresent()) {
+		if(mr.findById(message.getId())!=null) {
 			mr.delete(message);
 			flag = true;
 		}
@@ -53,7 +53,7 @@ public class MessageService {
 	
 	public Message updateMessage(Message message) {
 		Message m = null;
-		if(mr.findById(message.getId()).isPresent()) {
+		if(mr.findById(message.getId())!=null) {
 			m = mr.save(message);
 		}
 		return m;
