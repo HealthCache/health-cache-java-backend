@@ -1,53 +1,75 @@
-package com.backend.service;
+package com.backend.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.model.Username;
-import com.backend.repository.UserNamesRepo;
+import com.backend.service.UsernamesService;
 
-@Service
-public class UsernamesService {
+@RestController
+@RequestMapping("/usernames")
+@CrossOrigin(origins = "*")
+public class UsernamesController {
 	
-	private UserNamesRepo ur;
-	
+	private UsernamesService us;
+
 	@Autowired
-	public UsernamesService(UserNamesRepo ur) {
-		this.ur = ur;
+	public UsernamesController(UsernamesService us) {
+		this.us = us;
 	}
 	
-	public Username getUsernameById(int id) {
-		return ur.findById(id).get();
+	@GetMapping("/getone")
+	public ResponseEntity<Username> getOne() {
+		Username u = new Username();
+		return new ResponseEntity<Username>(u, HttpStatus.OK);
 	}
 	
-	public List<Username> getAllUsernames() {
-		return ur.findAll();
+	@GetMapping("/getbyid")
+	public ResponseEntity<Username> getById(@RequestParam int id) {
+		Username u = us.getUsernameById(id);
+		return new ResponseEntity<Username>(u, HttpStatus.OK);
 	}
 	
-	public List<Username> getFirst10() {
-		return ur.findLast10ByOrderByIdDesc();
+	@GetMapping("/get10")
+	public ResponseEntity<List<Username>> get10() {
+		return new ResponseEntity<List<Username>>(us.getFirst10(), HttpStatus.OK);
 	}
 	
-	public Username createUsername(Username username) {
-		return ur.save(username);
+	@GetMapping("/getall")
+	public ResponseEntity<List<Username>> getAll() {
+		return new ResponseEntity<List<Username>>(us.getAllUsernames(), HttpStatus.OK);
 	}
 	
-	public Username updateUsername(Username username) {
-		Username u = null;
-		if(ur.findById(username.getId()).isPresent()) {
-			u = ur.save(username);
+	@PostMapping("/create")
+	public ResponseEntity<Username> create(@RequestBody Username username) {
+		Username u = us.createUsername(username);
+		return new ResponseEntity<Username>(u, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/update")
+	public ResponseEntity<Username> update(@RequestBody Username username) {
+		Username u = us.updateUsername(username);
+		if(u == null) {
+			return new ResponseEntity<Username>(new Username(), HttpStatus.NOT_FOUND);
 		}
-		return u; 
+		return new ResponseEntity<Username>(u, HttpStatus.CREATED);
 	}
 	
-	public boolean deleteUsername(Username username) {
-		boolean flag = false;		 
-		if(ur.findById(username.getId()).isPresent()) {
-			ur.delete(username);
-			flag = true;
+	@PostMapping("/delete")
+	public ResponseEntity<String> delete(@RequestBody Username username) {
+		if(!us.deleteUsername(username)) {
+			return new ResponseEntity<String>("Username could not be  deleted", HttpStatus.NOT_FOUND);
 		}
-		return flag;
+		return new ResponseEntity<String>("Username deleted", HttpStatus.CREATED);
 	}
 }
