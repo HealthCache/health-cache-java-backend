@@ -12,10 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -92,9 +92,11 @@ public class ClaimController {
 	 * @return all claims found by the user id
 	 */
 	@GetMapping("/byuserid/{id}")
-	public ResponseEntity<List<Claim>> findAllByUserId(@RequestParam int id){
+	public ResponseEntity<List<Claim>> findAllByUserId(@PathVariable int id){
 		List<Claim> claims = null;
 		HttpStatus responseStatus = HttpStatus.OK;
+		
+		System.out.println("userId: " + id);
 		try
 		{
 			claims =  cServ.findAllClaimsByUserId(id);
@@ -114,7 +116,7 @@ public class ClaimController {
 	 * @return
 	 */
 	@GetMapping("/bystatus/{status}")
-	public ResponseEntity<List<Claim>> findClaimsByStatus(@RequestParam String status) {
+	public ResponseEntity<List<Claim>> findClaimsByStatus(@PathVariable String status) {
 		List<Claim> claims = null;
 		HttpStatus responseStatus = HttpStatus.OK;
 		try
@@ -136,7 +138,7 @@ public class ClaimController {
 	 * @return the claim found by the claim id
 	 */
 	@GetMapping("/byclaimid/{id}")
-	public ResponseEntity<Claim> findByClaimId(@RequestParam int id) {
+	public ResponseEntity<Claim> findByClaimId(@PathVariable int id) {
 		Claim claim = null;
 		HttpStatus responseStatus = HttpStatus.OK;
 		try
@@ -217,7 +219,7 @@ public class ClaimController {
 	 * @return string and status indicating success or failure
 	 */
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteClaim(@RequestParam int id) {
+	public ResponseEntity<String> deleteClaim(@PathVariable int id) {
 		String result = "Claim Was Deleted. ID: " + id;
 		HttpStatus responseStatus = HttpStatus.OK;
 		try

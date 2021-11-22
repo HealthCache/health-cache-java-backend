@@ -1,0 +1,15 @@
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                dir("DiscoveryService"){
+                    sh "ls"
+                    sh "mvn clean install"
+                    sh "mvn spring-boot:run"
+                }
+            }
+        }
+    }
+}

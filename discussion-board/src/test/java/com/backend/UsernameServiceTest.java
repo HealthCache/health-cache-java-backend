@@ -1,7 +1,6 @@
 package com.backend;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -51,7 +50,11 @@ public class UsernameServiceTest {
 		
 		
 		assertThat(uServ.getUsernameById(anyInt())).isEqualTo(username);
-	}*/
+		Username username = new Username();		
+		when(uDao.findById(1)).thenReturn(Optional.of(username));
+		assertThat(uServ.getUsernameById(1)).isEqualTo(username);
+	}
+	*/
 	
 	@Test
 	void createUsernameTest() {

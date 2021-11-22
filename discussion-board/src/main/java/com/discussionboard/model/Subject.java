@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +27,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="Subject")
+@Table(name="subject")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
@@ -39,27 +39,27 @@ public class Subject {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@Column(name="content")
+	@Column(name="content", nullable = false)
 	private String content;
 	
-	@Column(name="timestamp")
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@Column(name="timestamp", nullable = false)
 	private Date timestamp;
 	
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="username_id")
 	private Username username;
 	
+	@OneToMany(mappedBy = "subject", cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<Message> messages;
+	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
 		name="subject_votes_junction",
 		joinColumns= {@JoinColumn(name="subject_id")},
-		inverseJoinColumns = {@JoinColumn(name="user_id")}
+		inverseJoinColumns = {@JoinColumn(name="username_id")}
 	)
 	Set<Username> votes = new HashSet<Username>();
-	
-	@OneToMany(mappedBy = "subject",cascade=CascadeType.ALL)
-	private List<Message> messages;
 
-	
+
 }
