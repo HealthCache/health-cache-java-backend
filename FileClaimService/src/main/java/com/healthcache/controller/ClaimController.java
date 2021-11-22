@@ -2,7 +2,6 @@ package com.healthcache.controller;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -134,7 +132,7 @@ public class ClaimController {
 	 * @return the claim found by the claim id
 	 */
 	@GetMapping("/byclaimid/{id}")
-	public ResponseEntity<Claim> findByClaimId(@RequestParam int id) {
+	public ResponseEntity<Claim> findByClaimId(@PathVariable int id) {
 		Claim claim = null;
 		HttpStatus responseStatus = HttpStatus.OK;
 		try
@@ -215,7 +213,7 @@ public class ClaimController {
 	 * @return string and status indicating success or failure
 	 */
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteClaim(@RequestParam int id) {
+	public ResponseEntity<String> deleteClaim(@PathVariable int id) {
 		String result = "Claim Was Deleted. ID: " + id;
 		HttpStatus responseStatus = HttpStatus.OK;
 		try
