@@ -20,11 +20,15 @@ import com.backend.service.MessageService;
 
 @RestController
 @RequestMapping("/message")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class MessageController { 
+	
+	private MessageService ms;
 
 	@Autowired
-	private MessageService ms;
+	public MessageController(MessageService ms) {
+		this.ms = ms;
+	}
 	
 	@GetMapping("/getone")
 	public ResponseEntity<Message> getOne() {
