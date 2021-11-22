@@ -13,11 +13,11 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.backend.model.Message;
-import com.backend.model.Subject;
-import com.backend.model.Username;
-import com.backend.repository.MessageRepo;
-import com.backend.service.MessageService;
+import com.discussionboard.model.Message;
+import com.discussionboard.model.Subject;
+import com.discussionboard.model.Username;
+import com.discussionboard.repository.MessageRepo;
+import com.discussionboard.service.MessageService;
 
 public class MessageServiceTest {
 

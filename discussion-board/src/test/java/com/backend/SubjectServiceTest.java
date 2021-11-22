@@ -13,10 +13,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.backend.model.Subject;
-import com.backend.model.Username;
-import com.backend.repository.SubjectRepo;
-import com.backend.service.SubjectService;
+import com.discussionboard.model.Subject;
+import com.discussionboard.model.Username;
+import com.discussionboard.repository.SubjectRepo;
+import com.discussionboard.service.SubjectService;
 
 public class SubjectServiceTest {
 	
