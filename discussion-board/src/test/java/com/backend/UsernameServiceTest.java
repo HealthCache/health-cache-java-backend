@@ -11,9 +11,9 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.discussionboard.model.Username;
-import com.discussionboard.repository.UserNamesRepo;
-import com.discussionboard.service.UsernamesService;
+import com.backend.model.Username;
+import com.backend.repository.UserNamesRepo;
+import com.backend.service.UsernamesService;
 
 public class UsernameServiceTest {
 	
