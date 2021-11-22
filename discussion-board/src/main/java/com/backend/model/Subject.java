@@ -61,4 +61,5 @@ public class Subject {
 	)
 	Set<Username> votes = new HashSet<Username>();
 
+
 }

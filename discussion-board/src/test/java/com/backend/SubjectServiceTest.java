@@ -129,5 +129,5 @@ public class SubjectServiceTest {
 		when(sDao.findLast10ByOrderByIdDesc()).thenReturn(subjects);
 		assertThat(sServ.getLastTenOrderById()).isNotEmpty();
 	}
-	
+
 }

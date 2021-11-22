@@ -1,9 +1,7 @@
 package com.healthCache.controller;
 
-import java.util.LinkedHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
 import com.healthCache.model.User;
 import com.healthCache.service.UserService;
 
@@ -31,20 +27,11 @@ public class UserController {
 	@Autowired
 	private UserService uServ;
 
-//	@Bean
-//	@LoadBalanced
-//	private RestTemplate RestTemplet() {
-//
-//		return new RestTemplate();
-//	}
-
-	//@Autowired
-	//private RestTemplate rest;
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> createUser(@RequestBody LinkedHashMap<String, String> user)
+	public ResponseEntity<String> createUser(@RequestBody User user)
 	{
-		User u =new User();
+		User u =new User(0,user.getFirstName(),user.getLastName(),user.getGender(),user.getUsername(),user.getEmail(),user.getPassword(),user.getDob(),user.getRole(),user.getAddressLineOne(),user.getAddressLineTwo(),user.getZipcode(),user.getCity(),user.getPhoneNo(),user.getRelationshipStatus(),user.getProfilePic());
 		if(uServ.registerUser(u))
 		{
 			return new ResponseEntity<String>("User was registered",HttpStatus.CREATED);
@@ -57,8 +44,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<User> loginUser(@RequestBody LinkedHashMap<String, String> user){
-		User u = uServ.loginUser(user.get("username"), user.get("password"));
+	public ResponseEntity<User> loginUser(@RequestBody User user){
+		User u = uServ.loginUser(user.getUsername(), user.getPassword());
 		
 		if(u == null) {
 			return new ResponseEntity<User>(u, HttpStatus.FORBIDDEN);

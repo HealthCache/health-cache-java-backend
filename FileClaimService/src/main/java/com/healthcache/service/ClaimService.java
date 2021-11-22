@@ -1,6 +1,8 @@
 package com.healthcache.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.healthcache.models.Claim;
@@ -34,10 +36,10 @@ public class ClaimService {
 	 * @param user_id
 	 * @return return null or all claims by user_id
 	 */
-	public List<Claim> findAllClaimsByUserId(int userId){
+	public List<Claim> findAllClaimsByUserId(int id){
 		List<Claim> claims = null;
 		try {
-			claims = cDao.findByUserId(userId);
+			claims = cDao.findByUserId(id);
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return claims;
 	}
@@ -62,12 +64,12 @@ public class ClaimService {
 	public Claim findByClaimId(int id) {
 		Claim claim = null;
 		try {
-			cDao.findById(id);
+		claim = cDao.findById(id);
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return claim;
 	}
 	
-	
+	 
 	/**
 	 * @param claim
 	 * @return true if update was successful or false otherwise
@@ -88,11 +90,11 @@ public class ClaimService {
 	public Claim saveNewClaim(Claim claim) {
 		Claim c = null;
 		try {
-			claim = cDao.save(claim);
+			c = cDao.save(claim);
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return c;
 	}
-	
+	 
 	
 	/**
 	 * @param claimId
@@ -103,9 +105,10 @@ public class ClaimService {
 		try {
 			cDao.deleteById(id);
 		} catch(Exception ex) { 
+			System.out.println("Deleting claim didn't work");
 			ex.printStackTrace();
 			success = false;
-		}
+		} 
 		return success;
 	}
 
