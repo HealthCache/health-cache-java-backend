@@ -5,15 +5,12 @@ import java.sql.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,19 +31,19 @@ public class Message {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="subject_id")
-	@JsonIgnore
 	private Subject subject;
 	
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="user_id")
 	private Username username;
 	
-	@Column(name="content")
+	@Column(name="content", nullable = false)
 	private String content;
 	
-	@Column(name="timestamp")
+	@Column(name="timestamp", nullable = false)
 	private Date timestamp;
-
+	
+	
 }

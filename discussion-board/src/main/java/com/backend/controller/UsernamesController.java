@@ -21,13 +21,16 @@ import com.backend.service.UsernamesService;
 @CrossOrigin(origins = "*")
 public class UsernamesController {
 	
-	@Autowired
 	private UsernamesService us;
+
+	@Autowired
+	public UsernamesController(UsernamesService us) {
+		this.us = us;
+	}
 	
 	@GetMapping("/getone")
 	public ResponseEntity<Username> getOne() {
 		Username u = new Username();
-//		u=null;
 		return new ResponseEntity<Username>(u, HttpStatus.OK);
 	}
 	

@@ -2,6 +2,7 @@ package com.backend.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.model.Username;
@@ -12,12 +13,13 @@ public class UsernamesService {
 	
 	private UserNamesRepo ur;
 	
+	@Autowired
 	public UsernamesService(UserNamesRepo ur) {
 		this.ur = ur;
 	}
 	
 	public Username getUsernameById(int id) {
-		return ur.getById(id);
+		return ur.findById(id).get();
 	}
 	
 	public List<Username> getAllUsernames() {

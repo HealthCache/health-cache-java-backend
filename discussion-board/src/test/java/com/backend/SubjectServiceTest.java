@@ -8,6 +8,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,17 +17,20 @@ import org.junit.jupiter.api.Test;
 import com.backend.model.Subject;
 import com.backend.model.Username;
 import com.backend.repository.SubjectRepo;
+import com.backend.repository.UserNamesRepo;
 import com.backend.service.SubjectService;
 
 public class SubjectServiceTest {
 	
 	private SubjectRepo sDao;
+	private UserNamesRepo uDao;
 	private SubjectService sServ;
 	
 	@BeforeEach
 	void setup() {
 		sDao = mock(SubjectRepo.class);
-		sServ = new SubjectService(sDao);
+		uDao = mock(UserNamesRepo.class);
+		sServ = new SubjectService(sDao, uDao);
 	}
 	
 	@Test
@@ -47,7 +51,7 @@ public class SubjectServiceTest {
 	@Test
 	void getSubjectByIdTest() {
 		Subject subject = new Subject();
-		when(sDao.findById(1)).thenReturn(subject);
+		when(sDao.findById(1)).thenReturn(Optional.of(subject));
 		assertThat(sServ.getSubjectById(1)).isEqualTo(subject);
 	}
 
@@ -64,21 +68,35 @@ public class SubjectServiceTest {
 		Subject subject = new Subject();
 		Optional<Subject> op = Optional.of(subject);
 //		doNothing().when(sDao).delete(any());
-		when(sDao.findById(anyInt())).thenReturn(subject);
+		when(sDao.findById(anyInt())).thenReturn(op);
 		assertThat(sServ.deleteSubject(subject)).isEqualTo(true);
 	}
 	
 	@Test
 	void updateSubjectTest() {
 		Subject subject = new Subject();
-		when(sDao.findById(anyInt())).thenReturn(subject);
+		doReturn(Optional.of(subject)).when(sDao).findById(subject.getId());
 		when(sDao.save(subject)).thenReturn(subject);
 		assertThat(sServ.updateSubject(subject)).isEqualTo(subject);
 	}
 	
+	@Test
+	void getSubjectsByUserIdTest() {
+		ArrayList<Subject> subjects = new ArrayList<Subject>();
+		Subject subject = new Subject();
+		Username username = new Username();
+		
+		subjects.add(subject);
+		
+		when(sDao.findByUsernameId(anyInt())).thenReturn(subjects);
+		
+		ArrayList<Subject> response = (ArrayList<Subject>) sServ.getSubjectsByUserId(1);
+		
+		assertThat(response.size()).isGreaterThan(0);
+	}
 	
 	@Test
-	void getSubjectsByUser() {
+	void getSubjectsByUserTest() {
 		ArrayList<Subject> subjects = new ArrayList<Subject>();
 		Subject subject = new Subject();
 		Username username = new Username();
@@ -90,6 +108,26 @@ public class SubjectServiceTest {
 		ArrayList<Subject> response = (ArrayList<Subject>) sServ.getSubjectsByUser(username);
 		
 		assertThat(response.size()).isGreaterThan(0);
+	}
+	
+	@Test
+	void voteSubject() {
+		Subject subject = new Subject();
+		Username user = new Username();
+		when(uDao.findById(anyInt())).thenReturn(Optional.of(user));
+		when(sDao.findById(anyInt())).thenReturn(Optional.of(subject));
+		when(uDao.save(user)).thenReturn(user);
+		when(sDao.save(subject)).thenReturn(subject);
+		assertThat(sServ.voteSubject(1, 1)).isEqualTo(subject);
+	}
+	
+	@Test
+	void getLastTenOrderByIdTest() {
+		Subject subject = new Subject();
+		List<Subject> subjects = new ArrayList<>();
+		subjects.add(subject);
+		when(sDao.findLast10ByOrderByIdDesc()).thenReturn(subjects);
+		assertThat(sServ.getLastTenOrderById()).isNotEmpty();
 	}
 	
 }

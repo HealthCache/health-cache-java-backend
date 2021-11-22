@@ -20,11 +20,15 @@ import com.backend.service.MessageService;
 
 @RestController
 @RequestMapping("/message")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class MessageController { 
+	
+	private MessageService ms;
 
 	@Autowired
-	private MessageService ms;
+	public MessageController(MessageService ms) {
+		this.ms = ms;
+	}
 	
 	@GetMapping("/getone")
 	public ResponseEntity<Message> getOne() {
@@ -46,13 +50,25 @@ public class MessageController {
 	
 	@GetMapping("/getlatestten")
 	public ResponseEntity<List<Message>> getLatestTen() {
-		List<Message> list = ms.getLatestTenById();
+		List<Message> list = ms.getLastTenOrderById();
+		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping("/getbyuserid")
+	public ResponseEntity<List<Message>> getByUser(@RequestParam int id) {
+		List<Message> list = ms.getMessagesByUserId(id);
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
 	
 	@PostMapping("/getbyuser")
 	public ResponseEntity<List<Message>> getByUser(@RequestBody Username u) {
 		List<Message> list = ms.getMessagesByUser(u);
+		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping("/getbysubjectid")
+	public ResponseEntity<List<Message>> getBySubject(@RequestParam int id) {
+		List<Message> list = ms.getMessagesBySubjectId(id);
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
 	
