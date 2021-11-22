@@ -49,7 +49,7 @@ public class MessageServiceTest {
 	@Test
 	void getMessageByIdTest() {
 		Message message = new Message();
-		when(mDao.findById(1)).thenReturn(message);
+		when(mDao.findById(1)).thenReturn(Optional.of(message));
 		assertThat(mServ.getMessageById(1)).isEqualTo(message);
 	}
 	
@@ -79,7 +79,7 @@ public class MessageServiceTest {
 		Message message = new Message();
 		Optional<Message> op = Optional.of(message);
 //		doNothing().when(mDao).delete(any(Message.class));
-		when(mDao.findById(anyInt())).thenReturn(message);
+		when(mDao.findById(anyInt())).thenReturn(op);
 		assertThat(mServ.deleteMessage(message)).isEqualTo(true);
 	}
 	
@@ -87,7 +87,7 @@ public class MessageServiceTest {
 	void updateMessageTest() {
 		Message message = new Message();
 		Optional<Message> op = Optional.of(message);
-		when(mDao.findById(anyInt())).thenReturn(message);
+		when(mDao.findById(anyInt())).thenReturn(op);
 		when(mDao.save(any(Message.class))).thenReturn(message);
 		assertThat(mServ.updateMessage(message)).isEqualTo(message);
 	}
