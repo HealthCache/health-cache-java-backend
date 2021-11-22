@@ -2,6 +2,7 @@ package com.healthcache.controller;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,9 +88,11 @@ public class ClaimController {
 	 * @return all claims found by the user id
 	 */
 	@GetMapping("/byuserid/{id}")
-	public ResponseEntity<List<Claim>> findAllByUserId(@RequestParam int id){
+	public ResponseEntity<List<Claim>> findAllByUserId(@PathVariable int id){
 		List<Claim> claims = null;
 		HttpStatus responseStatus = HttpStatus.OK;
+		
+		System.out.println("userId: " + id);
 		try
 		{
 			claims =  cServ.findAllClaimsByUserId(id);
@@ -108,7 +112,7 @@ public class ClaimController {
 	 * @return
 	 */
 	@GetMapping("/bystatus/{status}")
-	public ResponseEntity<List<Claim>> findClaimsByStatus(@RequestParam String status) {
+	public ResponseEntity<List<Claim>> findClaimsByStatus(@PathVariable String status) {
 		List<Claim> claims = null;
 		HttpStatus responseStatus = HttpStatus.OK;
 		try

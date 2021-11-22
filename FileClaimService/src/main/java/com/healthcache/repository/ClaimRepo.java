@@ -1,6 +1,7 @@
 package com.healthcache.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ public interface ClaimRepo extends JpaRepository<Claim, Integer> {
 	
 	public List<Claim> findAll();
 	
-	public List<Claim> findByUserId(int userId);
+	public List<Claim> findByUserId(int id);
 	
 	public List<Claim> findByStatus(String status);
 	

@@ -1,6 +1,8 @@
 package com.healthcache.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.healthcache.models.Claim;
@@ -34,10 +36,10 @@ public class ClaimService {
 	 * @param user_id
 	 * @return return null or all claims by user_id
 	 */
-	public List<Claim> findAllClaimsByUserId(int userId){
+	public List<Claim> findAllClaimsByUserId(int id){
 		List<Claim> claims = null;
 		try {
-			claims = cDao.findByUserId(userId);
+			claims = cDao.findByUserId(id);
 		} catch(Exception ex) { ex.printStackTrace(); }
 		return claims;
 	}
