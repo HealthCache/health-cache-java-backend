@@ -1,4 +1,4 @@
-package com.DiscoveryService.driver;
+package com.DiscoveryService.DiscoveryService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
