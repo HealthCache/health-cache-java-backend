@@ -49,7 +49,7 @@ public class MessageServiceTest {
 	@Test
 	void getMessageByIdTest() {
 		Message message = new Message();
-		when(mDao.getById(1)).thenReturn(message);
+		when(mDao.findById(1)).thenReturn(Optional.of(message));
 		assertThat(mServ.getMessageById(1)).isEqualTo(message);
 	}
 	

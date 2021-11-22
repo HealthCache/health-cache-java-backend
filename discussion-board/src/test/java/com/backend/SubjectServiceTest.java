@@ -16,17 +16,20 @@ import org.junit.jupiter.api.Test;
 import com.backend.model.Subject;
 import com.backend.model.Username;
 import com.backend.repository.SubjectRepo;
+import com.backend.repository.UserNamesRepo;
 import com.backend.service.SubjectService;
 
 public class SubjectServiceTest {
 	
 	private SubjectRepo sDao;
+	private UserNamesRepo uDao;
 	private SubjectService sServ;
 	
 	@BeforeEach
 	void setup() {
 		sDao = mock(SubjectRepo.class);
-		sServ = new SubjectService(sDao);
+		uDao = mock(UserNamesRepo.class);
+		sServ = new SubjectService(sDao, uDao);
 	}
 	
 	@Test
@@ -47,7 +50,7 @@ public class SubjectServiceTest {
 	@Test
 	void getSubjectByIdTest() {
 		Subject subject = new Subject();
-		when(sDao.getById(1)).thenReturn(subject);
+		when(sDao.findById(1)).thenReturn(Optional.of(subject));
 		assertThat(sServ.getSubjectById(1)).isEqualTo(subject);
 	}
 
@@ -90,6 +93,17 @@ public class SubjectServiceTest {
 		ArrayList<Subject> response = (ArrayList<Subject>) sServ.getSubjectsByUser(username);
 		
 		assertThat(response.size()).isGreaterThan(0);
+	}
+	
+	@Test
+	void voteSubject() {
+		Subject subject = new Subject();
+		Username user = new Username();
+		when(uDao.findById(anyInt())).thenReturn(Optional.of(user));
+		when(sDao.findById(anyInt())).thenReturn(Optional.of(subject));
+		when(uDao.save(user)).thenReturn(user);
+		when(sDao.save(subject)).thenReturn(subject);
+		assertThat(sServ.voteSubject(1, 1)).isEqualTo(subject);
 	}
 	
 }

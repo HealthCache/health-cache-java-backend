@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +20,21 @@ import com.backend.service.MessageService;
 
 @RestController
 @RequestMapping("/message")
-public class MessageController {
+@CrossOrigin(origins = "*")
+public class MessageController { 
+	
+	private MessageService ms;
 
 	@Autowired
-	private MessageService ms;
+	public MessageController(MessageService ms) {
+		this.ms = ms;
+	}
+	
+	@GetMapping("/getone")
+	public ResponseEntity<Message> getOne() {
+		Message m = new Message();
+		return new ResponseEntity<Message>(m, HttpStatus.OK);
+	}
 	
 	@GetMapping("/getbyid")
 	public ResponseEntity<Message> getById(@RequestParam int id) {
@@ -30,21 +42,27 @@ public class MessageController {
 		return new ResponseEntity<Message>(m, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getbyuser")
+	@GetMapping("/getall")
+	public ResponseEntity<List<Message>> getAll() {
+		List<Message> list = ms.getAllMessages();
+		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getlatestten")
+	public ResponseEntity<List<Message>> getLatestTen() {
+		List<Message> list = ms.getLatestTenById();
+		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping("/getbyuser")
 	public ResponseEntity<List<Message>> getByUser(@RequestBody Username u) {
 		List<Message> list = ms.getMessagesByUser(u);
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getbysubject")
+	@PostMapping("/getbysubject")
 	public ResponseEntity<List<Message>> getBySubject(@RequestBody Subject s) {
 		List<Message> list = ms.getMessagesBySubject(s);
-		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
-	}
-	
-	@GetMapping("/getall")
-	public ResponseEntity<List<Message>> getAll() {
-		List<Message> list = ms.getAllMessages();
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
 	

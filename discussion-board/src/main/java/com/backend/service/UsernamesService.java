@@ -2,6 +2,7 @@ package com.backend.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.model.Username;
@@ -12,16 +13,21 @@ public class UsernamesService {
 	
 	private UserNamesRepo ur;
 	
+	@Autowired
 	public UsernamesService(UserNamesRepo ur) {
 		this.ur = ur;
 	}
 	
 	public Username getUsernameById(int id) {
-		return ur.getById(id);
+		return ur.findById(id).get();
 	}
 	
 	public List<Username> getAllUsernames() {
 		return ur.findAll();
+	}
+	
+	public List<Username> getFirst10() {
+		return ur.findLast10ByOrderByIdDesc();
 	}
 	
 	public Username createUsername(Username username) {
@@ -33,11 +39,11 @@ public class UsernamesService {
 		if(ur.findById(username.getId()).isPresent()) {
 			u = ur.save(username);
 		}
-		return u;
+		return u; 
 	}
 	
 	public boolean deleteUsername(Username username) {
-		boolean flag = false;		
+		boolean flag = false;		 
 		if(ur.findById(username.getId()).isPresent()) {
 			ur.delete(username);
 			flag = true;

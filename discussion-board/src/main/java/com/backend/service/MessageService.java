@@ -2,6 +2,7 @@ package com.backend.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.model.Message;
@@ -14,12 +15,13 @@ public class MessageService {
 
 	private MessageRepo mr;
 	
+	@Autowired
 	public MessageService(MessageRepo mr) {
 		this.mr = mr; 
 	}
 	
 	public Message getMessageById(int id) {
-		return mr.getById(id);
+		return mr.findById(id).orElse(new Message());
 	}
 	
 	public List<Message> getAllMessages() {
@@ -32,6 +34,10 @@ public class MessageService {
 	
 	public List<Message> getMessagesBySubject(Subject s) {
 		return mr.findBySubjectId(s.getId());
+	}
+	
+	public List<Message> getLatestTenById() {
+		return mr.findLast10ByOrderById();
 	}
 	
 	public Message createMessage(Message message) { 

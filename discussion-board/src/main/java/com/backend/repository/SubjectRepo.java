@@ -8,5 +8,5 @@ import com.backend.model.Subject;
 
 public interface SubjectRepo extends JpaRepository<Subject, Integer> {
 	public List<Subject> findByUsernameId(int id);
-
+	public List<Subject> findLast10ByOrderByIdDesc();
 }

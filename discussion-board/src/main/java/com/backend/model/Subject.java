@@ -2,6 +2,7 @@ package com.backend.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -35,10 +37,10 @@ public class Subject {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@Column(name="content")
+	@Column(name="content", nullable = false)
 	private String content;
 	
-	@Column(name="timestamp")
+	@Column(name="timestamp", nullable = false)
 	private Date timestamp;
 	
 	@ManyToOne(cascade=CascadeType.MERGE)
@@ -49,9 +51,11 @@ public class Subject {
 	@JoinTable(
 		name="subject_votes_junction",
 		joinColumns= {@JoinColumn(name="subject_id")},
-		inverseJoinColumns = {@JoinColumn(name="user_id")}
+		inverseJoinColumns = {@JoinColumn(name="username_id")}
 	)
 	Set<Username> votes = new HashSet<Username>();
 	
-	
+	@OneToMany(mappedBy = "subject", cascade=CascadeType.ALL)
+	private List<Message> messages;
+
 }

@@ -31,7 +31,6 @@ public class Message {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="subject_id")
 	private Subject subject;
@@ -40,10 +39,10 @@ public class Message {
 	@JoinColumn(name="user_id")
 	private Username username;
 	
-	@Column(name="content")
+	@Column(name="content", nullable = false)
 	private String content;
 	
-	@Column(name="timestamp")
+	@Column(name="timestamp", nullable = false)
 	private Date timestamp;
 	
 	

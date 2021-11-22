@@ -10,18 +10,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.model.Username;
 import com.backend.service.UsernamesService;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/usernames")
+@CrossOrigin(origins = "*")
 public class UsernamesController {
 	
-	@Autowired
 	private UsernamesService us;
+
+	@Autowired
+	public UsernamesController(UsernamesService us) {
+		this.us = us;
+	}
 	
 	@GetMapping("/getone")
 	public ResponseEntity<Username> getOne() {
@@ -30,9 +35,14 @@ public class UsernamesController {
 	}
 	
 	@GetMapping("/getbyid")
-	public ResponseEntity<Username> getById(int id) {
+	public ResponseEntity<Username> getById(@RequestParam int id) {
 		Username u = us.getUsernameById(id);
 		return new ResponseEntity<Username>(u, HttpStatus.OK);
+	}
+	
+	@GetMapping("/get10")
+	public ResponseEntity<List<Username>> get10() {
+		return new ResponseEntity<List<Username>>(us.getFirst10(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getall")
