@@ -1,4 +1,4 @@
-package com.DiscoveryService.driver;
+package com.DiscoveryService.DiscoveryService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
