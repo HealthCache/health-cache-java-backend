@@ -27,12 +27,16 @@ public class SubjectService {
 		return sr.findById(id).get();
 	}
 	
-	public List<Subject> getLastTenById() {
+	public List<Subject> getLastTenOrderById() {
 		return sr.findLast10ByOrderByIdDesc();
 	}
 	
 	public List<Subject> getAllSubjects() {
 		return sr.findAll();
+	}
+	
+	public List<Subject> getSubjectsByUserId(int id) {
+		return sr.findByUsernameId(id);
 	}
 	
 	public List<Subject> getSubjectsByUser(Username username) {

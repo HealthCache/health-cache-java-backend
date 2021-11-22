@@ -66,7 +66,18 @@ public class SubjectController {
 	 */
 	@GetMapping("/getlatestten")
 	public ResponseEntity<List<Subject>> getLatestTen() {
-		List<Subject> list = ss.getLastTenById();
+		List<Subject> list = ss.getLastTenOrderById();
+		return new ResponseEntity<List<Subject>>(list, HttpStatus.OK);
+	}
+	
+	/**
+	 * 
+	 * @param u is an integer data coming from the client-side
+	 * @return a list of user's subjects
+	 */
+	@PostMapping("/getbyuserid")
+	public ResponseEntity<List<Subject>> getByUserId(@RequestParam int id) {
+		List<Subject> list = ss.getSubjectsByUserId(id);
 		return new ResponseEntity<List<Subject>>(list, HttpStatus.OK);
 	}
 	
