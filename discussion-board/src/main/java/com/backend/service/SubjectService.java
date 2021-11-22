@@ -18,7 +18,7 @@ public class SubjectService {
 	}
 	
 	public Subject getSubjectById(int id) {
-		return sr.getById(id);
+		return sr.findById(id);
 	}
 	
 	public List<Subject> getLastTenById() {
@@ -40,7 +40,7 @@ public class SubjectService {
 	
 	public boolean deleteSubject(Subject subject) {
 		boolean flag = false;
-		if(sr.findById(subject.getId()).isPresent()) {
+		if(sr.findById(subject.getId())!=null ) {
 			sr.delete(subject);
 			flag = true;
 		}
@@ -49,7 +49,7 @@ public class SubjectService {
 	
 	public Subject updateSubject(Subject subject) {
 		Subject s = null;
-		if(sr.findById(subject.getId()).isPresent()) {
+		if(sr.findById(subject.getId())!=null) {
 			s = sr.save(subject);
 		}
 		return s;

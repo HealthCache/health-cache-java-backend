@@ -2,6 +2,7 @@ package com.backend.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,7 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,6 +43,7 @@ public class Subject {
 	private String content;
 	
 	@Column(name="timestamp")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date timestamp;
 	
 	@ManyToOne(cascade=CascadeType.MERGE)
@@ -53,5 +58,8 @@ public class Subject {
 	)
 	Set<Username> votes = new HashSet<Username>();
 	
+	@OneToMany(mappedBy = "subject",cascade=CascadeType.ALL)
+	private List<Message> messages;
+
 	
 }

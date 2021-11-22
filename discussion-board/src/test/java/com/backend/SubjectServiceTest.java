@@ -47,7 +47,7 @@ public class SubjectServiceTest {
 	@Test
 	void getSubjectByIdTest() {
 		Subject subject = new Subject();
-		when(sDao.getById(1)).thenReturn(subject);
+		when(sDao.findById(1)).thenReturn(subject);
 		assertThat(sServ.getSubjectById(1)).isEqualTo(subject);
 	}
 
@@ -64,14 +64,14 @@ public class SubjectServiceTest {
 		Subject subject = new Subject();
 		Optional<Subject> op = Optional.of(subject);
 //		doNothing().when(sDao).delete(any());
-		when(sDao.findById(anyInt())).thenReturn(op);
+		when(sDao.findById(anyInt())).thenReturn(subject);
 		assertThat(sServ.deleteSubject(subject)).isEqualTo(true);
 	}
 	
 	@Test
 	void updateSubjectTest() {
 		Subject subject = new Subject();
-		doReturn(Optional.of(subject)).when(sDao).findById(subject.getId());
+		when(sDao.findById(anyInt())).thenReturn(subject);
 		when(sDao.save(subject)).thenReturn(subject);
 		assertThat(sServ.updateSubject(subject)).isEqualTo(subject);
 	}
