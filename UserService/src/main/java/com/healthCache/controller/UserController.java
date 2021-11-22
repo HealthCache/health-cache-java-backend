@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.web.bind.annotation.*;
 import com.healthCache.model.User;
 import com.healthCache.service.UserService;
+
+import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -41,6 +42,11 @@ public class UserController {
 		{
 			return new ResponseEntity<String>("Username or email was already taken",HttpStatus.CONFLICT);
 		}
+	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "This controller is being reached.";
 	}
 	
 	@PostMapping("/login")

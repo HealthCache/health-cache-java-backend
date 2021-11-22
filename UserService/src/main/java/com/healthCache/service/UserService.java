@@ -1,10 +1,11 @@
 package com.healthCache.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.healthCache.model.User;
 import com.healthCache.repository.UserRepo;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

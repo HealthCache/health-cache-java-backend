@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir("HealthCacheGateway"){
+                dir("GatewayService"){
                     sh "ls"
                     sh "mvn clean install"
                     sh "mvn spring-boot:run"
