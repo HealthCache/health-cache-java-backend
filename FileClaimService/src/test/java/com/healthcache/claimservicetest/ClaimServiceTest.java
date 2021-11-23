@@ -15,10 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-
-import com.healthcache.models.Claim;
-import com.healthcache.repository.ClaimRepo;
-import com.healthcache.service.ClaimService;
+import healthcache.models.Claim;
+import healthcache.repository.ClaimRepo;
+import healthcache.service.ClaimService;
 
 @SpringBootTest
 public class ClaimServiceTest {

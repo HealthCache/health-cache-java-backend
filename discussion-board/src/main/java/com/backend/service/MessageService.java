@@ -28,16 +28,24 @@ public class MessageService {
 		return mr.findAll(); 
 	}
 	
+	public List<Message> getMessagesByUserId(int id) {
+		return mr.findByUsernameId(id);
+	}
+	
 	public List<Message> getMessagesByUser(Username u) {
 		return mr.findByUsernameId(u.getId());
+	}
+	
+	public List<Message> getMessagesBySubjectId(int id) {
+		return mr.findBySubjectId(id);
 	}
 	
 	public List<Message> getMessagesBySubject(Subject s) {
 		return mr.findBySubjectId(s.getId());
 	}
 	
-	public List<Message> getLatestTenById() {
-		return mr.findLast10ByOrderById();
+	public List<Message> getLastTenOrderById() {
+		return mr.findLast10ByOrderByIdDesc();
 	}
 	
 	public Message createMessage(Message message) { 

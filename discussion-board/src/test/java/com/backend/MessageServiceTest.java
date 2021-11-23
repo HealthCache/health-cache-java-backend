@@ -54,10 +54,24 @@ public class MessageServiceTest {
 	}
 	
 	@Test
+	void getMessageByUserIdTest() {
+		List<Message> list = new ArrayList<>();
+		when(mDao.findByUsernameId(1)).thenReturn(list);
+		assertThat(mServ.getMessagesByUserId(1)).isEqualTo(list);
+	}
+	
+	@Test
 	void getMessageByUserTest() {
 		List<Message> list = new ArrayList<>();
 		when(mDao.findByUsernameId(1)).thenReturn(list);
 		assertThat(mServ.getMessagesByUser(new Username())).isEqualTo(list);
+	}
+	
+	@Test
+	void getMessagesBySubjectIdTest() {
+		List<Message> list = new ArrayList<>();
+		when(mDao.findBySubjectId(1)).thenReturn(list);
+		assertThat(mServ.getMessagesBySubjectId(1)).isEqualTo(list);
 	}
 	
 	@Test
@@ -90,5 +104,14 @@ public class MessageServiceTest {
 		when(mDao.findById(anyInt())).thenReturn(op);
 		when(mDao.save(any(Message.class))).thenReturn(message);
 		assertThat(mServ.updateMessage(message)).isEqualTo(message);
+	}
+	
+	@Test
+	void getLastTenOrderById() {
+		Message message = new Message();
+		List<Message> messages = new ArrayList<>();
+		messages.add(message);
+		when(mDao.findLast10ByOrderByIdDesc()).thenReturn(messages);
+		assertThat(mServ.getLastTenOrderById()).isNotEmpty();
 	}
 }

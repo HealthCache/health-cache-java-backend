@@ -18,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +27,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="Subject")
+@Table(name="subject")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
@@ -47,6 +49,10 @@ public class Subject {
 	@JoinColumn(name="username_id")
 	private Username username;
 	
+	@OneToMany(mappedBy = "subject", cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<Message> messages;
+	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
 		name="subject_votes_junction",
@@ -54,8 +60,6 @@ public class Subject {
 		inverseJoinColumns = {@JoinColumn(name="username_id")}
 	)
 	Set<Username> votes = new HashSet<Username>();
-	
-	@OneToMany(mappedBy = "subject", cascade=CascadeType.ALL)
-	private List<Message> messages;
+
 
 }
