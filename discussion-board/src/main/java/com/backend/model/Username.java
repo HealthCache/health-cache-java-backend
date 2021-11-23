@@ -33,7 +33,6 @@ public class Username {
 	
 	@Id
 	@Column(name="username_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
 	@Column(name="username", nullable = false)
