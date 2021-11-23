@@ -1,4 +1,4 @@
-package com.healthcache.claimservicetest;
+package healthcache.claimservicetest;
 
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
