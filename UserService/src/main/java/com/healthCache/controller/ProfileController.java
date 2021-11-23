@@ -1,13 +1,14 @@
 package com.healthCache.controller;
 
 
-import com.healthCache.exceptions.ResourceNotFoundException;
-import com.healthCache.model.User;
-import com.healthCache.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.healthCache.exceptions.ResourceNotFoundException;
+import com.healthCache.model.User;
+import com.healthCache.service.UserService;
 
 import java.util.List;
 
@@ -33,6 +34,11 @@ public class ProfileController {
         }else {
             return new ResponseEntity<User>(u, HttpStatus.FORBIDDEN);
         }
+    }
+    
+    @GetMapping("/test")
+    public String test() {
+    	return "This is being reached.";
     }
 
 

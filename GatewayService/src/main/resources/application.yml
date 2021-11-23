@@ -1,0 +1,26 @@
+server:
+  port: 8081
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://184.72.201.95:2727/eureka/
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+      - id: userModule
+        uri: lb://user-service
+        predicates:
+        - Path=/api/user/**, /api/profile/**
+      - id: discussionModule
+        uri: lb://discussion-board
+        predicates:
+        - Path=/message/**, /subject/**, /usernames/**
+      - id: claimModule
+        uri: lb://file-claim
+        predicates:
+        - Path=/claim/**

@@ -18,7 +18,6 @@ import com.backend.service.UsernamesService;
 
 @RestController
 @RequestMapping("/usernames")
-@CrossOrigin(origins = "*")
 public class UsernamesController {
 	
 	private UsernamesService us;
@@ -34,10 +33,16 @@ public class UsernamesController {
 		return new ResponseEntity<Username>(u, HttpStatus.OK);
 	}
 	
+	/*
 	@GetMapping("/getbyid")
 	public ResponseEntity<Username> getById(@RequestParam int id) {
 		Username u = us.getUsernameById(id);
 		return new ResponseEntity<Username>(u, HttpStatus.OK);
+	}*/
+	
+	@GetMapping("/test")
+	public String test() {
+		return "this controller is being reached.";
 	}
 	
 	@GetMapping("/get10")
