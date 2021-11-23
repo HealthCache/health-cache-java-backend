@@ -75,7 +75,7 @@ public class SubjectController {
 	 * @param u is an integer data coming from the client-side
 	 * @return a list of user's subjects
 	 */
-	@PostMapping("/getbyuserid")
+	@GetMapping("/getbyuserid")
 	public ResponseEntity<List<Subject>> getByUserId(@RequestParam int id) {
 		List<Subject> list = ss.getSubjectsByUserId(id);
 		return new ResponseEntity<List<Subject>>(list, HttpStatus.OK);

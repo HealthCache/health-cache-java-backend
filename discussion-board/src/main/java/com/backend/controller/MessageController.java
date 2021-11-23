@@ -66,7 +66,7 @@ public class MessageController {
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
 	
-	@PostMapping("/getbysubjectid")
+	@GetMapping("/getbysubjectid")
 	public ResponseEntity<List<Message>> getBySubject(@RequestParam int id) {
 		List<Message> list = ms.getMessagesBySubjectId(id);
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);

@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -49,7 +50,7 @@ public class Subject {
 	@JoinColumn(name="username_id")
 	private Username username;
 	
-	@OneToMany(mappedBy = "subject", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="subject", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Message> messages;
 	

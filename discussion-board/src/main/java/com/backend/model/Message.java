@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +34,7 @@ public class Message {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="subject_id")
 	private Subject subject;
 	
@@ -44,6 +47,7 @@ public class Message {
 	
 	@Column(name="timestamp", nullable = false)
 	private Date timestamp;
+	
 	
 	
 }
