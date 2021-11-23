@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://ec2-34-227-74-122.compute-1.amazonaws.com:8761/eureka/
+      defaultZone: http://184.72.201.95:8761/eureka/
 
 spring:
   application:
