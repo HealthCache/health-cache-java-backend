@@ -1,7 +1,9 @@
 package com.backend.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,8 +60,25 @@ public class SubjectService {
 		return sr.save(s);
 	}
 	
-	public Subject createSubject(Subject subject) {
-		Subject s = sr.save(subject);
+	public Subject createSubject(LinkedHashMap<String, String> subject) {
+		int username_id = Integer.parseInt(subject.get("user_id"));
+		String username = subject.get("username");
+		Username user = null;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Subject s = null;
+		
+		if(username_id!=0&&username!=null) {
+			if(user==null)
+				user=ur.save(new Username(username_id,username,null,null,null));
+		}
+		try {
+			if(username==null)
+				throw new RuntimeException("Problem with username");
+			s = sr.save(new Subject(0,subject.get("content"),formatter.parse(subject.get("timestamp")),user,null,null));
+		}catch (Exception e) {
+			s=null;
+		}
+		System.out.print(s);
 		return s;
 	}
 	
