@@ -52,14 +52,14 @@ public class ClaimController {
 	/**
 	 * @return the claim types defined in the Claim POJO as a list of strings
 	 */
-	@GetMapping("/claimtypes")
+	@GetMapping(path="/claimtypes", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<String>> getClaimTypes()
 	{
 		return new ResponseEntity<List<String>>(Util.CLAIM_TYPES, HttpStatus.OK);
 	}
 	
 	//Test performed by Taylor to test Eureka
-	@GetMapping("/test")
+	@GetMapping(path="/test", produces=MediaType.APPLICATION_JSON_VALUE)
 	public String test() {
 		return "This controller is responding";
 	}
@@ -91,7 +91,7 @@ public class ClaimController {
 	 * @param id of user as request parameter
 	 * @return all claims found by the user id
 	 */
-	@GetMapping("/byuserid/{id}")
+	@GetMapping(path="/byuserid/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Claim>> findAllByUserId(@PathVariable int id){
 		List<Claim> claims = null;
 		HttpStatus responseStatus = HttpStatus.OK;
@@ -115,7 +115,7 @@ public class ClaimController {
 	 * @param status string - refer to the Claim POJO (APPROVED, DENIED, PENDING) 
 	 * @return
 	 */
-	@GetMapping("/bystatus/{status}")
+	@GetMapping(path="/bystatus/{status}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Claim>> findClaimsByStatus(@PathVariable String status) {
 		List<Claim> claims = null;
 		HttpStatus responseStatus = HttpStatus.OK;
@@ -137,7 +137,7 @@ public class ClaimController {
 	 * @param id of claim
 	 * @return the claim found by the claim id
 	 */
-	@GetMapping("/byclaimid/{id}")
+	@GetMapping(path="/byclaimid/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Claim> findByClaimId(@PathVariable int id) {
 		Claim claim = null;
 		HttpStatus responseStatus = HttpStatus.OK;
@@ -163,7 +163,7 @@ public class ClaimController {
 	 * @param claim information to update
 	 * @return successful string if the claim updates successfully or error string otherwise
 	 */
-	@PostMapping("/update")
+	@PostMapping(path="/update", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateClaim(@RequestBody LinkedHashMap<String, String> claim) {
 		String result = "Claim Updated Successfully";
 		HttpStatus resultStatus = HttpStatus.CREATED;
@@ -189,7 +189,7 @@ public class ClaimController {
 	 * @param claim
 	 * @return successful response if the claim is save, or conflict response if there is a conflict
 	 */
-	@PostMapping("/save")
+	@PostMapping(path="/save", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> saveNewClaim(@RequestBody LinkedHashMap<String, String> claim) {
 		String result = "Claim Saved Successfully";
 		HttpStatus resultStatus = HttpStatus.CREATED;
@@ -218,7 +218,7 @@ public class ClaimController {
 	 * @param id of claim to delete
 	 * @return string and status indicating success or failure
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(path="/delete/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> deleteClaim(@PathVariable int id) {
 		String result = "Claim Was Deleted. ID: " + id;
 		HttpStatus responseStatus = HttpStatus.OK;
