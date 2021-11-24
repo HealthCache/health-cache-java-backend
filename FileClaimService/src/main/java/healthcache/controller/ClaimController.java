@@ -69,7 +69,7 @@ public class ClaimController {
 	 * @return all claims or null
 	 */
 	@GetMapping("/all")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	public ResponseEntity<List<Claim>> getAllClaims(){
 		List<Claim> claims = null;
 		HttpStatus responseStatus = HttpStatus.OK;
