@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @RestController()
 @AllArgsConstructor
 @NoArgsConstructor
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("api/user")
 public class UserController {
 
