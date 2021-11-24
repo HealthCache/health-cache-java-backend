@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -192,6 +193,9 @@ public class ClaimController {
 	@PostMapping(path="/save", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> saveNewClaim(@RequestBody LinkedHashMap<String, String> claim) {
 		String result = "Claim Saved Successfully";
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Access-Control-Allow-Origin", "*");
+		
 		HttpStatus resultStatus = HttpStatus.CREATED;
 		try
 		{
@@ -210,7 +214,7 @@ public class ClaimController {
 			logger.debug(ex.getStackTrace());
 		}
 
-		return new ResponseEntity<String>(result, resultStatus);
+		return new ResponseEntity<String>(result, headers, resultStatus);
 	}
 	
 	
