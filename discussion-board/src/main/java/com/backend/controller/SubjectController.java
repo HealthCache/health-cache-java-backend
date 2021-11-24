@@ -111,7 +111,7 @@ public class SubjectController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	public ResponseEntity<Subject> createSubject(@RequestBody Subject subject) {
+	public ResponseEntity<Subject> createSubject(@RequestBody LinkedHashMap<String, String> subject) {
 		Subject s = ss.createSubject(subject);
 		return new ResponseEntity<Subject>(s, HttpStatus.CREATED);
 	}

@@ -57,12 +57,12 @@ public class SubjectServiceTest {
 	}
 
 	
-	@Test
-	void createSubject() {
-		Subject subject = new Subject();
-		when(sDao.save(any())).thenReturn(subject);
-		assertThat(sServ.createSubject(subject)).isEqualTo(subject);
-	}
+//	@Test
+//	void createSubject() {
+//		Subject subject = new Subject();
+//		when(sDao.save(any())).thenReturn(subject);
+//		assertThat(sServ.createSubject(subject)).isEqualTo(subject);
+//	}
 	
 	@Test
 	void deleteSubjectTest() {
