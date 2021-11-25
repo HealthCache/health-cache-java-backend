@@ -25,7 +25,10 @@ spring:
         predicates:
         - Path=/claim/**
         - Method=DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
+<<<<<<< HEAD
         
+=======
+>>>>>>> 426cc28810cb7ffc5e000e5c0292f5e522de0df1
   globalcors:
         corsConfigurations:
           '[/**]':
