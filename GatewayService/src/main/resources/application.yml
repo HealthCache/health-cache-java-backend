@@ -26,7 +26,7 @@ spring:
         - Path=/claim/**
         - Method=DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
         filters:
-        - AddResponseHeader=Access-Control-Allow-Origin
+        - AddResponseHeader=Access-Control-Allow-Origin,*
   globalcors:
         corsConfigurations:
           '[/**]':
