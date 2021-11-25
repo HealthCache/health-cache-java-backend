@@ -11,10 +11,10 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 
 @Configuration
-public class CorsConfigurationSource implements WebFluxConfigurer{
+public class CorsConfigurationSource2 implements WebFluxConfigurer{
 
 	@Bean 
-	public UrlBasedCorsConfigurationSource corsConfigurationSource() { 
+	public UrlBasedCorsConfigurationSource corsConfigurationSource2() { 
 		CorsConfiguration configuration = new CorsConfiguration(); 
 		configuration.setAllowedOrigins(Arrays.asList("*")); 
 		configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS")); 
