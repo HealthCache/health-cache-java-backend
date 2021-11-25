@@ -242,14 +242,5 @@ public class ClaimController {
 		return new ResponseEntity<String>(result, responseStatus);
 	}
 	
-	@RequestMapping(path="/save", method=RequestMethod.OPTIONS)
-	public ResponseEntity<?>optionsSave() {
-	    logger.info("OPTIONS /save called");
-	    
-	    return ResponseEntity
-                .ok()
-                .allow(HttpMethod.POST, HttpMethod.OPTIONS)
-                .build();
-	}
 	
 }

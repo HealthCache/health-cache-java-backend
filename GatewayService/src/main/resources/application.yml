@@ -24,9 +24,5 @@ spring:
         uri: lb://file-claim
         predicates:
         - Path=/claim/**
-  globalcors:
-        corsConfigurations:
-          '[/**]':
-              allowedOrigins: "*"
-              allowedMethods: "*"
-              allowedHeaders: "*"
+
+
