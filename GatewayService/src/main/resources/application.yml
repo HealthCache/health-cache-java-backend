@@ -24,6 +24,9 @@ spring:
         uri: lb://file-claim
         predicates:
         - Path=/claim/**
-        - Method=DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
-      filters:
-      - AddResponseHeader=Access-Control-Allow-Origin,*
+  globalcors:
+        corsConfigurations:
+          '[/**]':
+              allowedOrigins: "*"
+              allowedMethods: "*"
+              allowedHeaders: "*"
