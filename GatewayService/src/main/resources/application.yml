@@ -24,7 +24,7 @@ spring:
         uri: lb://file-claim
         predicates:
         - Path=/claim/**
-        - Method=*
+        - Method=DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
         filters:
         - AddResponseHeader=*
   globalcors:
