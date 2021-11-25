@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -238,6 +239,16 @@ public class ClaimController {
 			logger.debug(ex.getStackTrace());
 		}
 		return new ResponseEntity<String>(result, responseStatus);
+	}
+	
+	@RequestMapping(path="/save", method=RequestMethod.OPTIONS)
+	public ResponseEntity<?>optionsSave() {
+	    logger.info("OPTIONS /save called");
+	    
+	    return ResponseEntity
+                .ok()
+                .allow(HttpMethod.POST, HttpMethod.OPTIONS)
+                .build();
 	}
 	
 }
