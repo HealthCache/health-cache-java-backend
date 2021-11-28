@@ -51,7 +51,7 @@ public class Subject {
 	private Username username;
 	
 	@OneToMany(mappedBy="subject", cascade=CascadeType.ALL)
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Message> messages;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
