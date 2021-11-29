@@ -1,5 +1,6 @@
 package com.backend.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,7 @@ public class MessageController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<Message> createMessage(@RequestBody Message message) {
+	public ResponseEntity<Message> createMessage(@RequestBody LinkedHashMap<String, String> message) {
 		Message m = ms.createMessage(message);
 		return new ResponseEntity<Message>(m, HttpStatus.CREATED);		
 	}
