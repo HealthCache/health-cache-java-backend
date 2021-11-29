@@ -36,6 +36,7 @@ public class Message {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="subject_id")
+	@JsonIgnore
 	private Subject subject;
 	
 	@ManyToOne(cascade=CascadeType.MERGE)
