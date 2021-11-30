@@ -1,5 +1,5 @@
 # HealthCache
-(minor change)
+
 The backend repository for the health cache project
 
 Technologies Used
