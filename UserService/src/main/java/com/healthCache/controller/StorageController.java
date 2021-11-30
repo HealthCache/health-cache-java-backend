@@ -37,4 +37,9 @@ public class StorageController {
     public ResponseEntity<String> deleteFile(@PathVariable String fileName) {
         return new ResponseEntity<>(service.deleteFile(fileName), HttpStatus.OK);
     }
+    
+    @GetMapping("/test")
+	public String test() {
+		return "ProfilePic controller is being reached.";
+	}
 }
