@@ -15,7 +15,7 @@ spring:
       - id: userModule
         uri: lb://user-service
         predicates:
-        - Path=/api/user/**, /api/profile/**
+        - Path=/api/user/**, /api/profile/**, /api/file/**
       - id: discussionModule
         uri: lb://discussion-board
         predicates:
