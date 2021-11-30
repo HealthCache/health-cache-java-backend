@@ -1,4 +1,4 @@
-/*
+
 package com.healthCache.config;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -30,4 +30,4 @@ public class StorageConfig {
     }
 
 }
-*/
+
