@@ -35,8 +35,8 @@ A healthcare insurance application for employees/patients to access information 
 - Amazon EC2
 - Amazon S3
 
-### Features
-## Users can...
+## Features
+### Users can...
 - Register new accounts
 - Login/Logout of existing accounts
 - View existing profile info
@@ -46,7 +46,7 @@ A healthcare insurance application for employees/patients to access information 
 - Post new threads to discussion board 
 - Respond to existing thread
 
-## Coming Soon...
+### Coming Soon...
 - Tech support live chat
 - Employees approve/deny claims
 - Exporting insurance cards
