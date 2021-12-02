@@ -38,6 +38,7 @@ A healthcare insurance application for employees/patients to access information 
 - Amazon S3
 
 ## Features
+
 ### Users can...
 - Register new accounts
 - Login/Logout of existing accounts
