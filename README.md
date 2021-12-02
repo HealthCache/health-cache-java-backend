@@ -1,6 +1,6 @@
 # HealthCache
 
-A healthcare insurance application for employees and/or patients to access information and carry out business related procedures. 
+A healthcare insurance application for employees/patients to access information and carry out business related procedures. 
 
 ## Technologies Used
 
