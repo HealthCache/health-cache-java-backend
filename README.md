@@ -35,23 +35,23 @@ A healthcare insurance application for employees/patients to access information 
 - Amazon EC2
 - Amazon S3
 
-###Features
-Users can...
-    - Register new accounts
-    - Login/Logout of existing accounts
-    - View existing profile info
-    - Update profile info
-    - Submit claims
-    - View existing claims 
-    - Post new threads to discussion board 
-    - Respond to existing thread
+### Features
+## Users can...
+- Register new accounts
+- Login/Logout of existing accounts
+- View existing profile info
+- Update profile info
+- Submit claims
+- View existing claims 
+- Post new threads to discussion board 
+- Respond to existing thread
 
-Coming Soon...
-    - Tech support live chat
-    - Employees approve/deny claims
-    - Exporting insurance cards
-    - Ticketing system for claims
-    - Upvoting/Flagging discussion threads
+## Coming Soon...
+- Tech support live chat
+- Employees approve/deny claims
+- Exporting insurance cards
+- Ticketing system for claims
+- Upvoting/Flagging discussion threads
 
 
 Contributors:
