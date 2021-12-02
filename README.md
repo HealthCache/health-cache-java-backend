@@ -13,13 +13,13 @@ A healthcare insurance application for employees/patients to access information 
 - Hibernate
 - H2 Database
 
-https://github.com/HealthCache/health-cache-java-backend/blob/main/Resource/ERD.png
+![](https://github.com/HealthCache/health-cache-java-backend/blob/main/Resource/ERD.png)
 
 ### Microservice Architecture
 - Spring Cloud Gateway
 - Netflix Eureka
 
-https://github.com/HealthCache/health-cache-java-backend/blob/main/Resource/Arch.png
+![](https://github.com/HealthCache/health-cache-java-backend/blob/main/Resource/Arch.png)
 
 ### Frontend
 - NodeJs
