@@ -59,6 +59,23 @@ A healthcare insurance application for employees/patients to access information 
 
 Contributors:
 
+- https://github.com/ahmedqani
+- https://github.com/b5yB
+- https://github.com/CharlesSmith98
+- https://github.com/edwinesca1
+- https://github.com/EmanuelPires
+- https://github.com/ericKristiansen
+- https://github.com/ErikLamascola
+- https://github.com/GuthrieNick
+- https://github.com/hatuey-mieses
+- https://github.com/JustinWilber99
+- https://github.com/rimboneko
+- https://github.com/Riya20395
+- https://github.com/Samesma
+- https://github.com/suzannaShevchuk
+- https://github.com/TaylorJonesRevature
+- https://github.com/Virut1316
+
 Resources:
-readme.md
-startup.md
+- readme.md
+- startup.md
